@@ -1,6 +1,7 @@
 package com.khachungbg97gmail.carservice;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.khachungbg97gmail.carservice.Common.Common;
 import com.khachungbg97gmail.carservice.Model.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -44,7 +46,11 @@ public class SignIn extends AppCompatActivity {
                             //get user information
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
                             if (user.getPassword().equals(edtPass.getText().toString())) {
-                                Toast.makeText(SignIn.this, "Sign in success", Toast.LENGTH_SHORT).show();
+                                Intent homeIntent=new Intent(SignIn.this,Home.class);
+                                Common.currentUser=user;
+                                startActivity(homeIntent);
+                                finish();
+
                             } else {
                                 Toast.makeText(SignIn.this, "Sign in failed", Toast.LENGTH_SHORT).show();
                             }

@@ -20,7 +20,11 @@
         </activity>
         <activity android:name=".SignIn" />
         <activity android:name=".SignUp" />
-        <activity android:name=".InsertCar"></activity>
+        <activity android:name=".InsertCar" />
+        <activity
+            android:name=".Home"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
