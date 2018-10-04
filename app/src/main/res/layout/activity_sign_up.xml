@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.khachungbg97gmail.carservice.SignUp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Name"
+            android:hint="Name"
+            android:textColorHint="@android:color/white"
+            android:inputType="text"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="2dp"
+            app:met_maxCharacters="11"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Password"
+            android:hint="Password"
+            android:textColorHint="@android:color/white"
+            android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="2dp"
+            app:met_maxCharacters="11"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Phone"
+            android:hint="Phone Number"
+            android:textColorHint="@android:color/white"
+            android:inputType="phone"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="2dp"
+            app:met_maxCharacters="11"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Email"
+            android:hint="Email"
+            android:textColorHint="@android:color/white"
+            android:inputType="textWebEmailAddress"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="2dp"
+            app:met_maxCharacters="30"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/FirstName"
+            android:hint="First Name"
+            android:textColorHint="@android:color/white"
+            android:inputType="text"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="2dp"
+            app:met_maxCharacters="11"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/LastName"
+            android:hint="Last Name"
+            android:textColorHint="@android:color/white"
+            android:inputType="text"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="2dp"
+            app:met_maxCharacters="11"/>
+    </LinearLayout>
+    <info.hoang8f.widget.FButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSignUp"
+        android:layout_weight="1"
+        android:text="Sign Up"
+        android:layout_alignParentBottom="true"
+        app:buttonColor="@color/btnSignUp"
+        android:textColor="@android:color/white"
+        android:layout_margin="8dp"/>
+
+
+</RelativeLayout>

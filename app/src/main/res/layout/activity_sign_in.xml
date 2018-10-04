@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.khachungbg97gmail.carservice.SignIn">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_centerInParent="true">
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Phone"
+            android:hint="Phone"
+            android:textColorHint="@android:color/white"
+            android:inputType="text"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="2dp"
+            app:met_maxCharacters="11"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Password"
+            android:hint="Password"
+            android:textColorHint="@android:color/white"
+            android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="2dp"
+            app:met_maxCharacters="11"/>
+    </LinearLayout>
+    <info.hoang8f.widget.FButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSignIn"
+        android:layout_weight="1"
+        android:text="Sign In"
+        android:layout_alignParentBottom="true"
+        app:buttonColor="@color/btnSignIn"
+        android:textColor="@android:color/white"
+        android:layout_margin="8dp"/>
+
+</RelativeLayout>

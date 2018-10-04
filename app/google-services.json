@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "640534040213",
+    "firebase_url": "https://carservice-47a9f.firebaseio.com",
+    "project_id": "carservice-47a9f",
+    "storage_bucket": "carservice-47a9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640534040213:android:fbc9d92147dcae12",
+        "android_client_info": {
+          "package_name": "com.khachungbg97gmail.carservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640534040213-1haf0ob77e2rm69ihvpun6di0m44plft.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khachungbg97gmail.carservice",
+            "certificate_hash": "d278db01f96117f7656f159a18c6487ba985b975"
+          }
+        },
+        {
+          "client_id": "640534040213-sjamlna5af4v4vodo02v2loo08flotjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApJmIOsFKnWE-4ctFue__JIFaO-YQhAoQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640534040213-sjamlna5af4v4vodo02v2loo08flotjj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
