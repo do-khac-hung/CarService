@@ -1,5 +1,6 @@
 package com.khachungbg97gmail.carservice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -107,6 +108,11 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_notify) {
 
         } else if (id == R.id.nav_send) {
+
+        }else if (id == R.id.nav_logout) {
+            Intent SignOut= new Intent(Home.this,MainActivity.class);
+            SignOut.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(SignOut);
 
         }
 
