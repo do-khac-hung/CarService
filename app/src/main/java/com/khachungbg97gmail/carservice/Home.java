@@ -114,6 +114,10 @@ public class Home extends AppCompatActivity
             SignOut.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(SignOut);
 
+        }else if(id==R.id.nav_howto){
+            Intent mYoutube=new Intent(Home.this,HowToVideo.class);
+            startActivity(mYoutube);
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -18,6 +18,10 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Setting" />
+        <item
+            android:id="@+id/nav_howto"
+            android:icon="@drawable/ic_play_circle_outline_black_24dp"
+            android:title="How to video" />
     </group>
 
     <item android:title="Communicate">
