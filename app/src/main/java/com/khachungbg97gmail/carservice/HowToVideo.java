@@ -76,7 +76,7 @@ public class HowToVideo extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(HowToVideo.this,response.toString(), Toast.LENGTH_SHORT).show();
+
             }
         },
                 new Response.ErrorListener() {

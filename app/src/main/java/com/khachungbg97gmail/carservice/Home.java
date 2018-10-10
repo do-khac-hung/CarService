@@ -102,12 +102,16 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_info) {
 
         } else if (id == R.id.nav_address) {
+            Intent mMap=new Intent(Home.this,maps.class);
+            startActivity(mMap);
 
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_notify) {
 
         } else if (id == R.id.nav_send) {
+            Intent mHotLine=new Intent(Home.this,HotLine.class);
+            startActivity(mHotLine);
 
         }else if (id == R.id.nav_logout) {
             Intent SignOut= new Intent(Home.this,MainActivity.class);
