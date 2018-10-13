@@ -54,8 +54,8 @@ public class Home extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //set Name for user
         View headerView=navigationView.getHeaderView(0);
-        txtName=(TextView)headerView.findViewById(R.id.txtName);
-        txtName.setText(Common.currentUser.getName());
+        txtName=(TextView)headerView.findViewById(R.id.txtName1);
+        txtName.setText(Common.currentUser.getLastName());
 
     }
 
@@ -100,6 +100,8 @@ public class Home extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_info) {
+            Intent infor=new Intent(Home.this,InsertCar.class);
+            startActivity(infor);
 
         } else if (id == R.id.nav_address) {
             Intent mMap=new Intent(Home.this,maps.class);

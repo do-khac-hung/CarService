@@ -1,6 +1,7 @@
 package com.khachungbg97gmail.carservice;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -52,6 +53,8 @@ public class SignUp extends AppCompatActivity {
                                     edtFirstName.getText().toString(),edtLastName.getText().toString());
                             table_user.child(edtPhone.getText().toString()).setValue(user);
                             Toast.makeText(SignUp.this, "Sign Up successfully", Toast.LENGTH_SHORT).show();
+                            Intent insertCar=new Intent();
+                            startActivity(insertCar);
                             finish();
                         }
                     }

@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"/>
+
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
@@ -44,9 +45,19 @@
         <Switch
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <SurfaceView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/surfaceView"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan"
+            android:id="@+id/btnScan"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/edtCode"
             android:hint="Vim code"/>
         <Button
             android:layout_width="match_parent"

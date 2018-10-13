@@ -15,10 +15,11 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Phone"
-            android:hint="Phone"
+            android:id="@+id/username"
+            android:hint="User"
             android:textColorHint="@android:color/white"
             android:inputType="text"
+            android:text="hungdk"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:layout_marginTop="2dp"
@@ -31,6 +32,7 @@
             android:textColorHint="@android:color/white"
             android:inputType="textPassword"
             android:textColor="@android:color/white"
+            android:text="Ancd1234"
             android:textSize="20sp"
             android:layout_marginTop="2dp"
             app:met_maxCharacters="11"/>
