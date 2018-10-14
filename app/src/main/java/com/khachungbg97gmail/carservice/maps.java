@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -26,6 +27,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.khachungbg97gmail.carservice.Adapter.ServiceAddressAdapter;
 import com.khachungbg97gmail.carservice.Model.ServiceAddress;
 
 import org.json.JSONArray;
@@ -39,6 +41,8 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
     private Double lat,lng;
     private GoogleMap mMap;
     ArrayList<ServiceAddress> arrayList;
+    ServiceAddressAdapter addressAdapter;
+    ListView listView;
     private FusedLocationProviderApi client;
     private Location location;
     //Initializing the GoogleApiClient object
@@ -53,7 +57,10 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         client= LocationServices.FusedLocationApi;
+        listView=(ListView)findViewById(R.id.listService);
         arrayList = new ArrayList<>();
+        addressAdapter=new ServiceAddressAdapter(this,R.layout.row_address,arrayList);
+        listView.setAdapter(addressAdapter);
         //Building a instance of Google Api Client
         googleApiClient=new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API)
@@ -137,6 +144,7 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
 
                                 Log.d("AAA",arrayList.toString());
                             }
+                            addressAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.d("AAA",e.toString());

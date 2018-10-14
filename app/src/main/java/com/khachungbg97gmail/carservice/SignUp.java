@@ -42,18 +42,18 @@ public class SignUp extends AppCompatActivity {
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(edtPhone.getText().toString()).exists()){
+                        if(dataSnapshot.child(edtName.getText().toString()).exists()){
                             mDialog.dismiss();
-                            Toast.makeText(SignUp.this, "Phone Number already register", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this, "Name already register", Toast.LENGTH_SHORT).show();
                         }
                         else{
                             mDialog.dismiss();
                             User user=new User(edtPhone.getText().toString(),edtName.getText().toString(),
                                     edtPass.getText().toString(),edtEmail.getText().toString(),
                                     edtFirstName.getText().toString(),edtLastName.getText().toString());
-                            table_user.child(edtPhone.getText().toString()).setValue(user);
+                            table_user.child(edtName.getText().toString()).setValue(user);
                             Toast.makeText(SignUp.this, "Sign Up successfully", Toast.LENGTH_SHORT).show();
-                            Intent insertCar=new Intent();
+                            Intent insertCar=new Intent(SignUp.this,InsertCar.class );
                             startActivity(insertCar);
                             finish();
                         }

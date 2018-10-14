@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.khachungbg97gmail.carservice.Common.Common;
+import com.khachungbg97gmail.carservice.Model.NumberRecognition;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -100,7 +101,7 @@ public class Home extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_info) {
-            Intent infor=new Intent(Home.this,InsertCar.class);
+            Intent infor=new Intent(Home.this,NumberRecognition.class);
             startActivity(infor);
 
         } else if (id == R.id.nav_address) {

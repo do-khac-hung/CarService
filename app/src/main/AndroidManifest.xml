@@ -41,7 +41,8 @@
         <activity android:name=".HotLine" />
         <activity android:name=".maps" />
         <activity android:name=".Chat" />
-        <activity android:name=".ListUser"></activity>
+        <activity android:name=".ListUser" />
+        <activity android:name=".Model.NumberRecognition"></activity>
     </application>
 
 </manifest>
