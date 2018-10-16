@@ -15,15 +15,15 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/username"
-            android:hint="User"
+            android:id="@+id/edtEmail"
+            android:hint="Email"
             android:textColorHint="@android:color/white"
             android:inputType="text"
-            android:text="hungdk"
+            android:text="khachungbg97@gmail.com"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:layout_marginTop="2dp"
-            app:met_maxCharacters="11"/>
+            app:met_maxCharacters="40"/>
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:textColorHint="@android:color/white"
             android:inputType="textPassword"
             android:textColor="@android:color/white"
-            android:text="Ancd1234"
+            android:text="handess7620"
             android:textSize="20sp"
             android:layout_marginTop="2dp"
             app:met_maxCharacters="11"/>

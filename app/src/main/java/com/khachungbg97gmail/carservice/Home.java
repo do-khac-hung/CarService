@@ -3,9 +3,8 @@ package com.khachungbg97gmail.carservice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +24,7 @@ public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
     DatabaseReference car;
-    TextView txtName;
+    TextView txtName,txtContentAddress,txtContentHotLine,txtContentVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,9 @@ public class Home extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Menu");
         setSupportActionBar(toolbar);
-
+        txtContentAddress=(TextView)findViewById(R.id.txtAddress);
+        txtContentHotLine=(TextView)findViewById(R.id.txtHotLine);
+        txtContentVideo=(TextView)findViewById(R.id.txtVideo);
         //init firebase
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -57,6 +59,27 @@ public class Home extends AppCompatActivity
         View headerView=navigationView.getHeaderView(0);
         txtName=(TextView)headerView.findViewById(R.id.txtName1);
         txtName.setText(Common.currentUser.getLastName());
+        txtContentAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mMap=new Intent(Home.this,maps.class);
+                startActivity(mMap);
+            }
+        });
+        txtContentHotLine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mHotLine=new Intent(Home.this,HotLine.class);
+                startActivity(mHotLine);
+            }
+        });
+        txtContentVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mYoutube=new Intent(Home.this,HowToVideo.class);
+                startActivity(mYoutube);
+            }
+        });
 
     }
 
@@ -68,6 +91,10 @@ public class Home extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
+
+
+
     }
 
     @Override

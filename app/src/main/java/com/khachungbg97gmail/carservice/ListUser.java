@@ -79,7 +79,7 @@ public class ListUser extends AppCompatActivity {
             while(i.hasNext()){
                 key = i.next().toString();
 
-                if(!key.equals(ChatUser.username)) {
+                if(!key.equals(ChatUser.id)) {
                     arrayList.add(key);
                 }
 
