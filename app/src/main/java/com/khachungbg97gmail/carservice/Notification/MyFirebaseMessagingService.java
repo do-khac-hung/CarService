@@ -9,12 +9,16 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.khachungbg97gmail.carservice.Common.Common;
 import com.khachungbg97gmail.carservice.Home;
+import com.khachungbg97gmail.carservice.Model.Notification;
 import com.khachungbg97gmail.carservice.R;
 
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -24,13 +28,21 @@ import java.util.Map;
 public class MyFirebaseMessagingService extends FirebaseMessagingService  {
     private static final String TAG = "MyFirebaseMsgService";
     private static int count = 0;
+    Notification notification;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         //Displaying data in log
         //It is optional
         Log.d(TAG, "Notification Message TITLE: " + remoteMessage.getNotification().getTitle());
         Log.d(TAG, "Notification Message BODY: " + remoteMessage.getNotification().getBody());
-        Log.d(TAG, "Notification Message DATA: " + remoteMessage.getData().toString());
+        //set title and body
+            notification=new Notification(
+                    remoteMessage.getNotification().getTitle(),
+                    remoteMessage.getNotification().getBody()
+            );
+        Common.notificationList.add(notification);
+        Toast.makeText(this, notification.getBody(), Toast.LENGTH_SHORT).show();
+        Collections.reverse(Common.notificationList);
         //Calling method to generate notification
         sendNotification(remoteMessage.getNotification().getTitle(),
                 remoteMessage.getNotification().getBody(), remoteMessage.getData());

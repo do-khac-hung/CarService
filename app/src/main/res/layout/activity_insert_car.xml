@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:background="@drawable/background"
     tools:context="com.khachungbg97gmail.carservice.InsertCar">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Car Information"
-        android:textSize="20dp"/>
+        <TextView
+            android:layout_marginLeft="125dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Car Information"
+            android:textSize="25dp"
+            android:textColor="@color/authui_colorPrimaryDark"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,50 +23,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Category car"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
             />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <EditText
+            android:orientation="horizontal"
+            android:weightSum="6">
+            <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/edtcategory"
-                android:hint="Choose category car"/>
+                android:hint="Choose category car"
+                android:layout_weight="1"/>
 
         <Spinner
             android:id="@+id/spinner1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"/>
+            android:spinnerMode="dropdown"
+            android:layout_weight="5"/>
 
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Insert vim code"/>
+            android:text="Vin code"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"/>
         <Switch
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/switchType"
-            android:checked="false"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Scan"
-            android:id="@+id/btnScan"/>
-        <EditText
+            android:checked="false"
+            android:text="Fill by hand or Scan"
+            android:textColor="@android:color/white"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edtCode"
-            android:hint="Vim code"/>
+            android:hint="Vim code"
+            app:met_maxCharacters="17"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Insert Car"
-            android:id="@+id/btnInsertcar"/>
+            android:text="Insert Vin Code"
+            android:id="@+id/btnInsertcar"
+            />
 
     </LinearLayout>
 

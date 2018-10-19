@@ -100,7 +100,7 @@ public class SignUp extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                Toast.makeText(SignUp.this,"Sign Up is successfully", Toast.LENGTH_LONG).show();
+                                               // Toast.makeText(SignUp.this,"Sign Up is successfully", Toast.LENGTH_LONG).show();
                                                 Intent insertCar= new Intent(SignUp.this,InsertCar.class);
                                                 Common.currentUser=user;
                                                 ChatUser.username=Common.currentUser.getName();

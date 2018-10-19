@@ -18,13 +18,12 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.khachungbg97gmail.carservice.Common.Common;
-import com.khachungbg97gmail.carservice.Model.NumberRecognition;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
     DatabaseReference car;
-    TextView txtName,txtContentAddress,txtContentHotLine,txtContentVideo;
+    TextView txtName,txtContentAddress,txtContentHotLine,txtContentVideo,txtEpc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class Home extends AppCompatActivity
         txtContentAddress=(TextView)findViewById(R.id.txtAddress);
         txtContentHotLine=(TextView)findViewById(R.id.txtHotLine);
         txtContentVideo=(TextView)findViewById(R.id.txtVideo);
-        //init firebase
+        txtEpc=(TextView)findViewById(R.id.txtEpc);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -55,10 +54,23 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Menu menuNav=navigationView.getMenu();
+        MenuItem nav_info=menuNav.findItem(R.id.nav_info);
+        MenuItem nav_notify=menuNav.findItem(R.id.nav_notify);
+        MenuItem nav_manage=menuNav.findItem(R.id.nav_manage);
+        MenuItem nav_send=menuNav.findItem(R.id.nav_send);
+        if(Common.currentUser==null){
+            nav_info.setEnabled(false);
+            nav_notify.setEnabled(false);
+            nav_manage.setEnabled(false);
+            nav_send.setEnabled(false);
+        }
         //set Name for user
         View headerView=navigationView.getHeaderView(0);
         txtName=(TextView)headerView.findViewById(R.id.txtName1);
-        txtName.setText(Common.currentUser.getLastName());
+        if(Common.currentUser!=null) {
+            txtName.setText(Common.currentUser.getLastName());
+        }
         txtContentAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +90,13 @@ public class Home extends AppCompatActivity
             public void onClick(View v) {
                 Intent mYoutube=new Intent(Home.this,HowToVideo.class);
                 startActivity(mYoutube);
+            }
+        });
+        txtEpc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mEpc=new Intent(Home.this,EPCView.class);
+                startActivity(mEpc);
             }
         });
 
@@ -128,7 +147,7 @@ public class Home extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_info) {
-            Intent infor=new Intent(Home.this,NumberRecognition.class);
+            Intent infor=new Intent(Home.this,PersonalInformation.class);
             startActivity(infor);
 
         } else if (id == R.id.nav_address) {
@@ -138,6 +157,8 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_notify) {
+            Intent notify=new Intent(Home.this,NotificationList.class);
+            startActivity(notify);
 
         } else if (id == R.id.nav_send) {
             Intent mHotLine=new Intent(Home.this,HotLine.class);

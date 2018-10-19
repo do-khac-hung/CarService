@@ -17,6 +17,9 @@ public class HotLine extends AppCompatActivity {
         setContentView(R.layout.activity_hot_line);
         txtCall=(TextView)findViewById(R.id.txtCall);
         txtChat=(TextView)findViewById(R.id.txtSend);
+        if(Common.currentUser==null){
+            txtChat.setEnabled(false);
+        }
         txtCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

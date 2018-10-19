@@ -2,6 +2,7 @@
     <string name="app_name">Car Service</string>
     <string name="slogan">When you have any problems with the car, we will help you</string>
     <string name="title_activity_home">Home</string>
+    <string name="next"><u>Next</u></string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
