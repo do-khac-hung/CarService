@@ -98,8 +98,8 @@ public class PersonalInformation extends TabActivity {
         {
             @Override
             protected void populateViewHolder(VinViewHolder viewHolder, Vin model, int position) {
-                  viewHolder.txtVinCode.setText(model.getVinCode());
-                  viewHolder.txtCategory.setText(model.getCategory());
+                  viewHolder.txtVinCode.setText("Vin Code:"+model.getVinCode());
+                  viewHolder.txtCategory.setText("Category:"+model.getCategory());
             }
         };
 

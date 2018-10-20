@@ -59,11 +59,13 @@ public class Home extends AppCompatActivity
         MenuItem nav_notify=menuNav.findItem(R.id.nav_notify);
         MenuItem nav_manage=menuNav.findItem(R.id.nav_manage);
         MenuItem nav_send=menuNav.findItem(R.id.nav_send);
+        MenuItem nav_check=menuNav.findItem(R.id.nav_check);
         if(Common.currentUser==null){
             nav_info.setEnabled(false);
             nav_notify.setEnabled(false);
             nav_manage.setEnabled(false);
             nav_send.setEnabled(false);
+            nav_check.setEnabled(false);
         }
         //set Name for user
         View headerView=navigationView.getHeaderView(0);
@@ -156,7 +158,12 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_notify) {
+        }else if(id==R.id.nav_check){
+            Intent mCheck=new Intent(Home.this,CheckEviction.class);
+            startActivity(mCheck);
+
+        }
+        else if (id == R.id.nav_notify) {
             Intent notify=new Intent(Home.this,NotificationList.class);
             startActivity(notify);
 
