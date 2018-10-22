@@ -5,23 +5,23 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="Home" />
+            android:title="@string/title_activity_home" />
         <item
             android:id="@+id/nav_info"
             android:icon="@drawable/ic_assignment_ind_black_24dp"
-            android:title="Information" />
+            android:title="@string/information" />
         <item
             android:id="@+id/nav_address"
             android:icon="@drawable/ic_add_location_black_24dp"
-            android:title="Agent Address" />
+            android:title="@string/agent" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Maintenance" />
+            android:title="@string/maintenance" />
         <item
             android:id="@+id/nav_check"
             android:icon="@drawable/ic_visibility_black_24dp"
-            android:title="Check Eviction" />
+            android:title="@string/checkE" />
         <item
             android:id="@+id/nav_howto"
             android:icon="@drawable/ic_play_circle_outline_black_24dp"
@@ -33,15 +33,15 @@
             <item
                 android:id="@+id/nav_notify"
                 android:icon="@drawable/ic_notifications_black_24dp"
-                android:title="Notification" />
+                android:title="@string/notify" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="@string/send" />
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_keyboard_backspace_black_24dp"
-                android:title="Log Out" />
+                android:title="@string/logout" />
         </menu>
     </item>
 

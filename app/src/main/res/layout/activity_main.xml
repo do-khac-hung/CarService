@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnSignUp"
             android:layout_weight="1"
-            android:text="Sign Up"
+            android:text="@string/signup"
             app:buttonColor="@color/btnSignUp"
             android:textColor="@android:color/white"
             android:layout_margin="8dp"/>
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnSignIn"
             android:layout_weight="1"
-            android:text="Sign In"
+            android:text="@string/signin"
             app:buttonColor="@color/btnSignIn"
             android:textColor="@android:color/white"
             android:layout_margin="8dp"/>

@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="Điện thoại trợ giúp"/>
+            android:text="@string/helpPhone"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:text="Chat with Us"
+                android:text="@string/chatUs"
                 android:textSize="40sp"
                 android:textColor="@android:color/black"
                 android:id="@+id/txtSend"/>

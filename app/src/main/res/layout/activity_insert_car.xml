@@ -11,7 +11,7 @@
             android:layout_marginLeft="125dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Car Information"
+            android:text="@string/oto"
             android:textSize="25dp"
             android:textColor="@color/authui_colorPrimaryDark"/>
     <LinearLayout
@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Category car"
+            android:text="@string/category"
             android:textSize="20dp"
             android:textColor="@android:color/white"
             />
@@ -50,7 +50,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vin code"
+            android:text="@string/vin"
             android:textColor="@android:color/white"
             android:textSize="20dp"/>
         <Switch
@@ -58,18 +58,18 @@
             android:layout_height="wrap_content"
             android:id="@+id/switchType"
             android:checked="false"
-            android:text="Fill by hand or Scan"
+            android:text="@string/fill"
             android:textColor="@android:color/white"/>
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edtCode"
-            android:hint="Vim code"
+            android:hint="@string/vin"
             app:met_maxCharacters="17"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Insert Vin Code"
+            android:text="@string/insertcar"
             android:id="@+id/btnInsertcar"
             />
 

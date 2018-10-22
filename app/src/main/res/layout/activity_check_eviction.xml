@@ -9,7 +9,7 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Check the Eviction"
+    android:text="@string/checkE"
     android:textSize="25dp"
     android:gravity="center"
     android:textColor="@android:color/background_dark"

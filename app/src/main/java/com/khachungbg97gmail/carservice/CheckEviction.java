@@ -15,6 +15,8 @@ import com.khachungbg97gmail.carservice.Interface.ItemClickListener;
 import com.khachungbg97gmail.carservice.Model.ChatUser;
 import com.khachungbg97gmail.carservice.Model.Vin;
 
+import static com.khachungbg97gmail.carservice.Common.Common.currentVin;
+
 public class CheckEviction extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -54,6 +56,7 @@ public class CheckEviction extends AppCompatActivity {
             protected void populateViewHolder(ViewHolder viewHolder, final Vin model, int position) {
                 viewHolder.txtVinCode.setText(model.getVinCode());
                 final Vin localVin=model;
+                currentVin=model;
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {

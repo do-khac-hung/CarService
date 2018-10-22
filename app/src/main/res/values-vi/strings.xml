@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Car Service</string>
+    <string name="slogan" translatable="false">Khi bạn gặp bất cứ vấn đề với xe của bạn,chúng tôi sẽ giúp bạn</string>
+    <string name="next" translatable="false"><u>Đăng ký sau</u></string>
+    <string name="agent" translatable="false">Địa chỉ đại lý</string>
+    <string name="hotline" translatable="false">Đường dây nóng</string>
+    <string name="maintenance" translatable="false">Bảo dưỡng xe</string>
+    <string name="checkE" translatable="false">Kiểm tra triệu hồi</string>
+    <string name="helpPhone" translatable="false">Điện thoại trợ giúp</string>
+    <string name="chatUs" translatable="false">Nhắn tin</string>
+    <string name="category" translatable="false">Loại xe</string>
+    <string name="vin" translatable="false">Mã Vin</string>
+    <string name="fill" translatable="false">Nhập tay hoặc quét</string>
+    <string name="signup" translatable="false">Đăng ký</string>
+    <string name="signin" translatable="false">Đăng nhập</string>
+    <string name="calendar" translatable="false">Đặt lịch</string>
+    <string name="note" translatable="false">Ghi chú</string>
+    <string name="save" translatable="false">Lưu</string>
+    <string name="listCar" translatable="false">Danh sách xe</string>
+    <string name="personal" translatable="false">Hồ sơ cá nhân</string>
+    <string name="add" translatable="false">Thêm</string>
+    <string name="name" translatable="false">Tên hiển thị</string>
+    <string name="passWord" translatable="false">Mật khẩu</string>
+    <string name="phoneNumber" translatable="false">Số điện thoại</string>
+    <string name="firstName" translatable="false">Họ</string>
+    <string name="lastName" translatable="false">Tên</string>
+    <string name="writemessage" translatable="false">Viết tin nhắn</string>
+    <string name="center" translatable="false">Trung tâm thông tin</string>
+    <string name="oto" translatable="false">Thông tin xe</string>
+    <string name="insertcar" translatable="false">Thêm mã Vin</string>
+    <string name="title_activity_home" translatable="false">Trang chủ</string>
+    <string name="more" translatable="false">Thông tin thêm</string>
+    <string name="information" translatable="false">Thông tin cá nhân</string>
+    <string name="action_settings" translatable="false">Cài đặt</string>
+    <string name="notify" translatable="false">Thông báo</string>
+    <string name="logout" translatable="false">Đăng xuất</string>
+    <string name="send" translatable="false">Tin nhắn</string>
+</resources>

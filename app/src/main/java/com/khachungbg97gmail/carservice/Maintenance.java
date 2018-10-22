@@ -12,15 +12,23 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.khachungbg97gmail.carservice.Model.ChatUser;
+import com.khachungbg97gmail.carservice.Model.Schedule;
 import com.khachungbg97gmail.carservice.Notification.MyReceiver;
 
 import java.util.Calendar;
+
+import static com.khachungbg97gmail.carservice.Common.Common.currentVin;
 
 public class Maintenance extends AppCompatActivity {
     EditText edtNote;
     Button btnSet;
     DatePicker datePicker;
     Calendar now;
+    FirebaseDatabase database;
+    DatabaseReference table_schedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +38,27 @@ public class Maintenance extends AppCompatActivity {
         datePicker.setSpinnersShown(false);
         btnSet=(Button)findViewById(R.id.btnSet);
         edtNote=(EditText)findViewById(R.id.note);
+        //init Firebase
+        database=FirebaseDatabase.getInstance();
+        table_schedule=database.getReference("Schedules");
         now=Calendar.getInstance();
         final Calendar current = Calendar.getInstance();
         btnSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int hour=22;
-                int minute=36;
+                int hour=7;
+                int minute=0;
                 now.set(datePicker.getYear(),datePicker.getMonth(),datePicker.getDayOfMonth(),hour,minute);
                 if(now.compareTo(current)<=0){
                     Toast.makeText(Maintenance.this,"invalid time",Toast.LENGTH_LONG).show();
                 }else{
                     String note=edtNote.getText().toString();
                     String date =datePicker.getYear()+"-"+datePicker.getMonth()+"-"+datePicker.getDayOfMonth();
-
+                    String accessories="bugi";
+                    String idUser= ChatUser.id;
+                    String vinCode=currentVin.getVinCode();
+                    Schedule schedule=new Schedule(date,note,idUser,vinCode,accessories);
+                    table_schedule.child(idUser).setValue(schedule);
                     Intent notifyIntent = new Intent(Maintenance.this, MyReceiver.class);
                   //  notifyIntent.putExtra("title",item.getText());
                     PendingIntent pendingIntent = PendingIntent.getBroadcast
