@@ -41,8 +41,14 @@ public class Home extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                if(Common.currentUser==null){
+                Snackbar.make(view, "Please sign in or sign up", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                }else{
+                    Intent sentUs = new Intent(Home.this, Chat.class);
+                    startActivity(sentUs);
+                }
+
             }
         });
 
@@ -157,6 +163,8 @@ public class Home extends AppCompatActivity
             startActivity(mMap);
 
         } else if (id == R.id.nav_manage) {
+            Intent mMaintenance=new Intent(Home.this,Maintenance.class);
+            startActivity(mMaintenance);
 
         }else if(id==R.id.nav_check){
             Intent mCheck=new Intent(Home.this,CheckEviction.class);

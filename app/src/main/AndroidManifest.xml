@@ -58,7 +58,17 @@
         <activity android:name=".NotificationList" />
         <activity android:name=".EPCView" />
         <activity android:name=".PersonalInformation" />
-        <activity android:name=".CheckEviction"></activity>
+        <activity android:name=".CheckEviction" />
+        <activity android:name=".Maintenance" />
+
+        <service
+            android:name=".Notification.NotificationService"
+            android:exported="false" />
+
+        <receiver
+            android:name=".Notification.MyReceiver"
+            android:enabled="true"
+            android:exported="false"></receiver>
     </application>
 
 </manifest>
