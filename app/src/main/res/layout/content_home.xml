@@ -21,8 +21,62 @@
            android:background="@drawable/homescreen"
            tools:layout_editor_absoluteY="0dp"
            tools:layout_editor_absoluteX="5dp"
-           android:layout_weight="0.03" />
-
+           android:layout_weight="0.03" >
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_alignParentBottom="true"
+               android:background="#3f24e2d5"
+               android:weightSum="2">
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   android:layout_weight="1"
+                   android:weightSum="2">
+                   <ImageView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:src="@drawable/newpost"
+                       android:layout_gravity="center"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                        android:text="0"
+                       android:textSize="30dp"
+                       android:textAlignment="center"
+                       android:textColor="@android:color/white"
+                       android:layout_weight="1"
+                       android:id="@+id/number"
+                   />
+                   </LinearLayout>
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   android:layout_weight="1"
+                   android:weightSum="2">
+                   <ImageView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:src="@drawable/baoduong"
+                       android:layout_gravity="center"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="Tạo lập"
+                       android:textAlignment="center"
+                       android:textSize="20dp"
+                       android:textColor="@android:color/white"
+                       android:layout_weight="1"
+                       android:id="@+id/txtScheduleMessage"
+                       />
+               </LinearLayout>
+                   />
+           </LinearLayout>
+       </RelativeLayout>
        <LinearLayout
            android:layout_width="wrap_content"
            android:layout_height="110dp"
@@ -61,7 +115,8 @@
                        android:layout_margin="0dp"
                        android:layout_weight="3"
                        android:layout_width="match_parent"
-                       android:layout_height="0dp" />
+                       android:layout_height="0dp"
+                       android:id="@+id/mAddress"/>
                </LinearLayout>
                <LinearLayout
                    android:layout_width="wrap_content"
@@ -84,7 +139,8 @@
                        android:layout_margin="0dp"
                        android:layout_weight="3"
                        android:layout_width="match_parent"
-                       android:layout_height="0dp" />
+                       android:layout_height="0dp"
+                       android:id="@+id/mHotline"/>
                    </LinearLayout>
                <LinearLayout
                    android:layout_width="wrap_content"
@@ -107,7 +163,8 @@
                        android:layout_margin="0dp"
                        android:layout_weight="3"
                        android:layout_width="match_parent"
-                       android:layout_height="0dp" />
+                       android:layout_height="0dp"
+                       android:id="@+id/mVideo"/>
                    </LinearLayout>
                </LinearLayout>
            <LinearLayout
@@ -138,7 +195,8 @@
                        android:layout_margin="0dp"
                        android:layout_weight="3"
                        android:layout_width="match_parent"
-                       android:layout_height="0dp" />
+                       android:layout_height="0dp"
+                       android:id="@+id/mSchedule"/>
                    </LinearLayout>
                <LinearLayout
                    android:layout_width="wrap_content"
@@ -161,7 +219,8 @@
                        android:layout_margin="0dp"
                        android:layout_weight="3"
                        android:layout_width="match_parent"
-                       android:layout_height="0dp" />
+                       android:layout_height="0dp"
+                       android:id="@+id/mEPC"/>
                    </LinearLayout>
                <LinearLayout
                    android:layout_width="wrap_content"
@@ -183,7 +242,8 @@
                        android:layout_margin="0dp"
                        android:layout_weight="3"
                        android:layout_width="match_parent"
-                       android:layout_height="0dp" />
+                       android:layout_height="0dp"
+                       android:id="@+id/mAdd"/>
 
                    </LinearLayout>
            </LinearLayout>

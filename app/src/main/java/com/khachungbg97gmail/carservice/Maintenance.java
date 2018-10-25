@@ -58,7 +58,8 @@ public class Maintenance extends AppCompatActivity {
                     String idUser= ChatUser.id;
                     String vinCode=currentVin.getVinCode();
                     Schedule schedule=new Schedule(date,note,idUser,vinCode,accessories);
-                    table_schedule.child(idUser).setValue(schedule);
+                    table_schedule.child(date).setValue(schedule);
+                    Toast.makeText(Maintenance.this, "Successfully!!", Toast.LENGTH_SHORT).show();
                     Intent notifyIntent = new Intent(Maintenance.this, MyReceiver.class);
                   //  notifyIntent.putExtra("title",item.getText());
                     PendingIntent pendingIntent = PendingIntent.getBroadcast

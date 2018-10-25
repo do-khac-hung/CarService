@@ -40,4 +40,11 @@
     <string name="logout" translatable="false">Log out</string>
     <string name="send" translatable="false">Send</string>
     <string name="center" translatable="false">accessories</string>
+    <string name="lbl_forgot_password" translatable="false">Forgot password?</string>
+    <string name="forgot_password_msg" translatable="false">We just need your registered Email Id to sent you password reset instructions.</string>
+    <string name="email_id">Email ID</string>
+    <string name="btn_reset_password" translatable="false">Reset Password</string>
+    <string name="btn_back" translatable="false"><![CDATA[<< Back]]></string>
+    <string name="hint_email">Email</string>
+    <string name="btn_forgot_password" translatable="false">Forgot your password?</string>
 </resources>

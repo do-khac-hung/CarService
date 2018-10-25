@@ -28,7 +28,7 @@ import static com.khachungbg97gmail.carservice.R.id.Password;
 
 public class SignIn extends AppCompatActivity {
     EditText edtEmail,edtPass;
-    Button btnSignIn;
+    Button btnSignIn,btnReset;
     String email, pass;
     FirebaseDatabase database;
     DatabaseReference table_user;
@@ -40,10 +40,17 @@ public class SignIn extends AppCompatActivity {
         edtEmail = (MaterialEditText) findViewById(R.id.edtEmail);
         edtPass = (MaterialEditText) findViewById(Password);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
+        btnReset=(Button)findViewById(R.id.btn_reset_password);
        //init firebase
         database = FirebaseDatabase.getInstance();
         table_user = database.getReference("User");
         auth = FirebaseAuth.getInstance();
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignIn.this, ResetPassword.class));
+            }
+        });
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override

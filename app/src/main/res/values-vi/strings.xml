@@ -36,4 +36,9 @@
     <string name="notify" translatable="false">Thông báo</string>
     <string name="logout" translatable="false">Đăng xuất</string>
     <string name="send" translatable="false">Tin nhắn</string>
+    <string name="forgot_password_msg">Chúng tôi cần địa Email đã đăng ký của bạn để gửi cho bạn hướng dẫn đặt lại mật khẩu.</string>
+    <string name="lbl_forgot_password" translatable="false">Quên mật khẩu?</string>
+    <string name="btn_back" translatable="false"><![CDATA[<< Trở lại]]></string>
+    <string name="btn_forgot_password" translatable="false">Quên mật khẩu?</string>
+    <string name="btn_reset_password" translatable="false">Đặt lại mật khẩu</string>
 </resources>

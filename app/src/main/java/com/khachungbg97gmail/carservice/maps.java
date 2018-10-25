@@ -1,12 +1,17 @@
 package com.khachungbg97gmail.carservice;
 
 import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
@@ -40,6 +45,7 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
         GoogleApiClient.OnConnectionFailedListener,OnMapReadyCallback,GoogleMap.OnMyLocationButtonClickListener {
     private Double lat,lng;
     private GoogleMap mMap;
+    LocationManager manager;
     ArrayList<ServiceAddress> arrayList;
     ServiceAddressAdapter addressAdapter;
     ListView listView;
@@ -59,18 +65,50 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
         client= LocationServices.FusedLocationApi;
         listView=(ListView)findViewById(R.id.listService);
         arrayList = new ArrayList<>();
-        addressAdapter=new ServiceAddressAdapter(this,R.layout.row_address,arrayList);
-        listView.setAdapter(addressAdapter);
-        //Building a instance of Google Api Client
-        googleApiClient=new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
-                .addOnConnectionFailedListener(this)
-                .addConnectionCallbacks(this)
-                .build();
-  //      findServiceAddress();
+        if(!isGpsOn()){
+       showSettingsAlert();
+       }
+            addressAdapter = new ServiceAddressAdapter(this, R.layout.row_address, arrayList);
+            listView.setAdapter(addressAdapter);
+            //Building a instance of Google Api Client
+            googleApiClient = new GoogleApiClient.Builder(this)
+                    .addApi(LocationServices.API)
+                    .addOnConnectionFailedListener(this)
+                    .addConnectionCallbacks(this)
+                    .build();
+    }
+    private boolean isGpsOn() {
+        manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        return manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
 
+    public void showSettingsAlert() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+
+        alertDialog.setTitle("GPS is not Enabled!");
+
+        alertDialog.setMessage("Do you want to turn on GPS?");
+
+
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        });
+
+
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+
+        alertDialog.show();
+    }
 
     @Override
     protected void onStart() {
@@ -177,16 +215,24 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
         mMap = googleMap;
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         mMap.setMyLocationEnabled(true);
+//        LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
+//        CameraPosition cameraPosition = new CameraPosition.Builder()
+//                .target(latLng)             // Sets the center of the map to location user
+//                .zoom(15)                   // Sets the zoom
+//                .bearing(90)                // Sets the orientation of the camera to east
+//                .tilt(40)                   // Sets the tilt of the camera to 30 degrees
+//                .build();                   // Creates a CameraPosition from the builder
+//        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//        // Thêm Marker cho Map:
+//        MarkerOptions option = new MarkerOptions();
+//        option.title("My Location");
+//        option.snippet("....");
+//        option.position(latLng);
+//        Marker currentMarker = mMap.addMarker(option);
+//        currentMarker.showInfoWindow();
         mMap.setOnMyLocationButtonClickListener(this);
 
     }

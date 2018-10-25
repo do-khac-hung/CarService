@@ -68,7 +68,10 @@
         <receiver
             android:name=".Notification.MyReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false" />
+
+        <activity android:name=".GetPost" />
+        <activity android:name=".ResetPassword"></activity>
     </application>
 
 </manifest>
