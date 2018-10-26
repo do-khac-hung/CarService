@@ -17,10 +17,14 @@
    <DatePicker
        android:layout_marginTop="10dp"
        android:layout_width="match_parent"
-       android:layout_height="355dp"
+       android:layout_height="300dp"
        android:layout_marginLeft="10dp"
        android:id="@+id/datePicker">
    </DatePicker>
+    <TimePicker
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:id="@+id/timePicker"></TimePicker>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

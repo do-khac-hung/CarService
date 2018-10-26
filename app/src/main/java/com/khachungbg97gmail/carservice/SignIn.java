@@ -43,7 +43,7 @@ public class SignIn extends AppCompatActivity {
         btnReset=(Button)findViewById(R.id.btn_reset_password);
        //init firebase
         database = FirebaseDatabase.getInstance();
-        table_user = database.getReference("User");
+        table_user = database.getReference("Users");
         auth = FirebaseAuth.getInstance();
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +75,7 @@ public class SignIn extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
                                     mDialog.dismiss();
-                                    FirebaseDatabase.getInstance().getReference("User")
+                                    FirebaseDatabase.getInstance().getReference("Users")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
@@ -84,6 +84,7 @@ public class SignIn extends AppCompatActivity {
                                                     Common.currentUser=dataSnapshot.getValue(User.class);
                                                     ChatUser.username=Common.currentUser.getName();
                                                     ChatUser.id=dataSnapshot.getKey();
+                                                    table_user.child(dataSnapshot.getKey()).child("password").setValue(pass);
                                                     startActivity(homeIntent);
                                                     finish();
                                                 }

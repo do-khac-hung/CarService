@@ -36,7 +36,7 @@ public class CheckEviction extends AppCompatActivity {
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         database=FirebaseDatabase.getInstance();
-        mReference=database.getReference().child("Vin").orderByChild("idUser").equalTo(ChatUser.id);
+        mReference=database.getReference().child("Vins").orderByChild("idUser").equalTo(ChatUser.id);
         loadListVin(ChatUser.id);
         recyclerView.setAdapter(adapter);
 

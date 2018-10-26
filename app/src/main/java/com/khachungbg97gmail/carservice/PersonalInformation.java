@@ -52,9 +52,9 @@ public class PersonalInformation extends TabActivity {
         recyclerView.setLayoutManager(layoutManager);
         //init Firebase
         database=FirebaseDatabase.getInstance();
-        table_user=database.getReference("User");
-        table_vin=database.getReference("Vin");
-        mReference=database.getReference().child("Vin").orderByChild("idUser").equalTo(ChatUser.id);
+        table_user=database.getReference("Users");
+        table_vin=database.getReference("Vins");
+        mReference=database.getReference().child("Vins").orderByChild("idUser").equalTo(ChatUser.id);
 
 
 

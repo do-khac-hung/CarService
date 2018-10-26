@@ -49,7 +49,7 @@ public class InsertCar extends AppCompatActivity {
         spnCategory = (Spinner) findViewById(R.id.spinner1);
         //init Firebase
         database=FirebaseDatabase.getInstance();
-        table_vin=database.getReference("Vin");
+        table_vin=database.getReference("Vins");
         auth = FirebaseAuth.getInstance();
         list = new ArrayList<>();
         list.add("FIESTA");

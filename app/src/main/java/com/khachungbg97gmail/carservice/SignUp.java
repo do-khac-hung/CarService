@@ -40,7 +40,7 @@ public class SignUp extends AppCompatActivity {
         btnSignUp=(Button)findViewById(R.id.btnSignUp);
         //init Firebase
          database=FirebaseDatabase.getInstance();
-         table_user=database.getReference("User");
+         table_user=database.getReference("Users");
          auth = FirebaseAuth.getInstance();
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +94,7 @@ public class SignUp extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     mDialog.dismiss();
                                     final User user = new User(phone, name, password, email, firstName, lastName);
-                                    FirebaseDatabase.getInstance().getReference("User")
+                                    FirebaseDatabase.getInstance().getReference("Users")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override

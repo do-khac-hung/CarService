@@ -14,6 +14,13 @@ public class Schedule {
     public Schedule() {
     }
 
+    public Schedule(String date, String note, String idUser, String accessory) {
+        this.date = date;
+        this.note = note;
+        this.idUser = idUser;
+        this.accessory = accessory;
+    }
+
     public Schedule(String date, String note, String idUser, String idVin, String accessory) {
         this.date = date;
         this.note = note;

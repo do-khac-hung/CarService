@@ -43,7 +43,7 @@ public class ListUser extends AppCompatActivity {
         pd.setMessage("Loading...");
         pd.show();
 
-        String url = "https://carservice-47a9f.firebaseio.com/User.json";
+        String url = "https://carservice-47a9f.firebaseio.com/Users.json";
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
