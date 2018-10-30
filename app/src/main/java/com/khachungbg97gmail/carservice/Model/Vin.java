@@ -8,15 +8,7 @@ public class Vin {
     private  String vinCode;
     private  String idUser;
     private  String category;
-    private  boolean type; //kiểm tra triệu hồi
 
-    public boolean isType() {
-        return type;
-    }
-
-    public void setType(boolean type) {
-        this.type = type;
-    }
 
     public Vin() {
     }
@@ -25,7 +17,6 @@ public class Vin {
         this.vinCode = vinCode;
         this.idUser = idUser;
         this.category = category;
-        this.type=true;
     }
 
     public String getVinCode() {

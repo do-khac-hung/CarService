@@ -10,8 +10,27 @@ public class Schedule {
     private String idUser;
     private String idVin;
     private String accessory;
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public Schedule() {
+    }
+
+    public Schedule(String date, String note, String idUser, String idVin, String accessory, String time) {
+        this.date = date;
+        this.note = note;
+        this.idUser = idUser;
+        this.idVin = idVin;
+        this.accessory = accessory;
+        this.time = time;
     }
 
     public Schedule(String date, String note, String idUser, String accessory) {

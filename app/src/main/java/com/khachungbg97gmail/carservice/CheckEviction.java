@@ -1,7 +1,6 @@
 package com.khachungbg97gmail.carservice;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -60,21 +59,21 @@ public class CheckEviction extends AppCompatActivity {
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        if(model.isType()){
-                            AlertDialog.Builder builder = new AlertDialog.Builder(CheckEviction.this);
-                            builder.setTitle("Check the eviction");
-                            builder.setMessage("Your car is not in the summon list");
-                            AlertDialog alertDialog = builder.create();
-                            alertDialog.show();
-                        }
-                        else {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(CheckEviction.this);
-                            builder.setTitle("Check the eviction");
-                            builder.setMessage("Your car is in the summon list");
-                            AlertDialog alertDialog = builder.create();
-                            alertDialog.show();
-
-                        }
+//                        if(model.isType()){
+//                            AlertDialog.Builder builder = new AlertDialog.Builder(CheckEviction.this);
+//                            builder.setTitle("Check the eviction");
+//                            builder.setMessage("Your car is not in the summon list");
+//                            AlertDialog alertDialog = builder.create();
+//                            alertDialog.show();
+//                        }
+//                        else {
+//                            AlertDialog.Builder builder = new AlertDialog.Builder(CheckEviction.this);
+//                            builder.setTitle("Check the eviction");
+//                            builder.setMessage("Your car is in the summon list");
+//                            AlertDialog alertDialog = builder.create();
+//                            alertDialog.show();
+//
+//                        }
 
                     }
                 });

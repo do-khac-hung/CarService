@@ -20,8 +20,6 @@ public class MyReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-//        Intent myIntent = new Intent(context, NotificationService.class);
-//        context.startService(myIntent);
         Intent notificationIntent = new Intent(context, Maintenance.class);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
@@ -29,13 +27,14 @@ public class MyReceiver extends BroadcastReceiver {
         stackBuilder.addNextIntent(notificationIntent);
 
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
+        String Vin=intent.getStringExtra("Vin");
+        String level=intent.getStringExtra("Level");
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
-        Notification notification = builder.setContentTitle("Demo App Notification")
-                .setContentText("New Notification From Demo App..")
+        Notification notification = builder.setContentTitle("Đã đến lịch bảo dưỡng xe "+Vin)
+                .setContentText("Cấp bảo dưỡng "+level)
                 .setTicker("New Message Alert!")
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_action_alarms)
                 .setContentIntent(pendingIntent).build();
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

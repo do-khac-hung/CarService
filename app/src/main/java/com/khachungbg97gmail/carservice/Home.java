@@ -167,8 +167,8 @@ public class Home extends AppCompatActivity
             startActivity(mMap);
 
         } else if (id == R.id.nav_manage) {
-            Intent mMaintenance=new Intent(Home.this,Maintenance.class);
-            startActivity(mMaintenance);
+            Intent choose=new Intent(Home.this,ChooseService.class);
+            startActivity(choose);
 
         }else if(id==R.id.nav_check){
             Intent mCheck=new Intent(Home.this,GetPost.class);

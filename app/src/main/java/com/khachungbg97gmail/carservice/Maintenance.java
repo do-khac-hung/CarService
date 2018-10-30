@@ -28,6 +28,8 @@ public class Maintenance extends AppCompatActivity {
     Calendar now;
     FirebaseDatabase database;
     DatabaseReference table_schedule;
+    String Vin;
+    int progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class Maintenance extends AppCompatActivity {
         //init Firebase
         database=FirebaseDatabase.getInstance();
         table_schedule=database.getReference("Schedules");
+        Intent intent=getIntent();
+        Vin=intent.getStringExtra("Vin");
+        progress=intent.getIntExtra("Level",0);
         now=Calendar.getInstance();
         final Calendar current = Calendar.getInstance();
         btnSet.setOnClickListener(new View.OnClickListener() {
@@ -60,16 +65,19 @@ public class Maintenance extends AppCompatActivity {
                     String note=edtNote.getText().toString();
                     int month=datePicker.getMonth()+1;
                     String date =datePicker.getYear()+"-"+month+"-"+datePicker.getDayOfMonth();
-                    String accessories="bugi";
+                    String accessories= String.valueOf(progress);
                     String idUser= ChatUser.id;
+                    String timeSchedule=time.getCurrentHour()+":"+time.getCurrentMinute();
                     //String vinCode= currentVin.getVinCode();
-                    //Schedule schedule=new Schedule(date,note,idUser,vinCode,accessories);
+                    Schedule schedule=new Schedule(date,note,idUser,Vin,accessories,timeSchedule);
                     //Toast.makeText(Maintenance.this," " +now, Toast.LENGTH_LONG).show();
-                    Schedule schedule1=new Schedule(date,note,idUser,accessories);
-                    table_schedule.child(date).setValue(schedule1);
+                 //   Schedule schedule1=new Schedule(date,note,idUser,accessories,timeSchedule);
+                    table_schedule.child(date).setValue(schedule);
                     Toast.makeText(Maintenance.this, "Successfully!!", Toast.LENGTH_SHORT).show();
                     Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
                     notificationIntent.addCategory("android.intent.category.DEFAULT");
+                    notificationIntent.putExtra("Vin",Vin);
+                    notificationIntent.putExtra("Level",accessories);
 
                     PendingIntent pendingIntent = PendingIntent.getBroadcast
                             (Maintenance.this,100 , notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -79,9 +87,11 @@ public class Maintenance extends AppCompatActivity {
                     cal.add(Calendar.DAY_OF_MONTH,datePicker.getDayOfMonth()-cal.get(Calendar.DAY_OF_MONTH));
                     cal.add(Calendar.HOUR_OF_DAY,time.getCurrentHour()-cal.get(Calendar.HOUR_OF_DAY));
                     cal.add(Calendar.MINUTE,time.getCurrentMinute()-cal.get(Calendar.MINUTE));
-                    cal.add(Calendar.SECOND,2);
+                    cal.add(Calendar.SECOND,0);
                     AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                     alarmManager.setExact(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(), pendingIntent);
+                    Intent home=new Intent(Maintenance.this,Home.class);
+                    startActivity(home);
                 }
 
             }

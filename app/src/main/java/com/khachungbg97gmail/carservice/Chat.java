@@ -50,8 +50,8 @@ public class Chat extends AppCompatActivity {
                 String textMessage=edtMessage.getText().toString();
                 if(!textMessage.equals("")){
                     Map<String,String> map=new HashMap<String, String>();
-                    map.put("Message",textMessage);
-                    map.put("User",ChatUser.username);
+                    map.put("message",textMessage);
+                    map.put("user_id",ChatUser.username);
                     reference1.push().setValue(map);
                     reference2.push().setValue(map);
 
@@ -63,13 +63,13 @@ public class Chat extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map map=dataSnapshot.getValue(Map.class);
-                String message=map.get("Message").toString();
-                String user=map.get("User").toString();
+                String message=map.get("message").toString();
+                String user=map.get("user_id").toString();
                 if(user.equals(ChatUser.username)){
-                    addMessage("You:-\n" + message, 0);
+                    addMessage("You:\n" + message, 0);
                 }
                 else{
-                    addMessage(ChatUser.chatWith + ":-\n" + message, 1);
+                    addMessage("Admin:\n" + message, 1);
                 }
             }
 

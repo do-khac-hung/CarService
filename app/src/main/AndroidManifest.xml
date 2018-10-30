@@ -61,23 +61,22 @@
         <activity android:name=".CheckEviction" />
         <activity android:name=".Maintenance" />
 
-        <service
-            android:name=".Notification.NotificationService"
-            android:exported="false" />
-
         <receiver
             android:name=".Notification.MyReceiver"
             android:enabled="true"
             android:exported="false">
-        <intent-filter>
-            <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
-        />
+            <intent-filter>
+                <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            />
         </receiver>
 
         <activity android:name=".GetPost" />
-        <activity android:name=".ResetPassword"></activity>
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".ChooseService" />
+        <activity android:name=".Schedules"></activity>
     </application>
 
 </manifest>
