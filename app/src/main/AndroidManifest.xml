@@ -76,7 +76,8 @@
         <activity android:name=".GetPost" />
         <activity android:name=".ResetPassword" />
         <activity android:name=".ChooseService" />
-        <activity android:name=".Schedules"></activity>
+        <activity android:name=".Schedules" />
+        <activity android:name=".Map"></activity>
     </application>
 
 </manifest>

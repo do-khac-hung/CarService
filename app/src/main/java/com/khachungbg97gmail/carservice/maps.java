@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -71,11 +72,16 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
             addressAdapter = new ServiceAddressAdapter(this, R.layout.row_address, arrayList);
             listView.setAdapter(addressAdapter);
             //Building a instance of Google Api Client
-            googleApiClient = new GoogleApiClient.Builder(this)
-                    .addApi(LocationServices.API)
-                    .addOnConnectionFailedListener(this)
-                    .addConnectionCallbacks(this)
-                    .build();
+              buildGoogleApiClient();
+
+    }
+    protected synchronized void buildGoogleApiClient() {
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(LocationServices.API)
+                .addOnConnectionFailedListener(this)
+                .addConnectionCallbacks(this)
+                .build();
+        googleApiClient.connect();
     }
     private boolean isGpsOn() {
         manager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -124,6 +130,11 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public void onConnected(@Nullable Bundle bundle) {
         findServiceAddress();
     }
@@ -139,6 +150,10 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
             return;
         }
         //Fetching location using FusedLOcationProviderAPI
+        if(googleApiClient==null){
+            buildGoogleApiClient();
+        }
+        mMap.setMyLocationEnabled(true);
         client=LocationServices.FusedLocationApi;
         location=client.getLastLocation(googleApiClient);
         if(location!= null){
@@ -199,6 +214,11 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
 
         requestQueue.add(jsonObjectRequest);
     }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+       // this.onSaveInstanceState(outState);
+    }
 
     @Override
     public void onConnectionSuspended(int i) {
@@ -213,11 +233,15 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            buildGoogleApiClient();
+            mMap.setMyLocationEnabled(true);
         }
-        mMap.setMyLocationEnabled(true);
+        } else {
+            buildGoogleApiClient();
+            mMap.setMyLocationEnabled(true);
+        }
 //        LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
 //        CameraPosition cameraPosition = new CameraPosition.Builder()
 //                .target(latLng)             // Sets the center of the map to location user
@@ -235,6 +259,15 @@ public class maps extends AppCompatActivity implements GoogleApiClient.Connectio
 //        currentMarker.showInfoWindow();
         mMap.setOnMyLocationButtonClickListener(this);
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override

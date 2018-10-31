@@ -176,7 +176,7 @@ public class Home extends AppCompatActivity
 
         }
         else if (id == R.id.nav_notify) {
-            Intent notify=new Intent(Home.this,NotificationList.class);
+            Intent notify=new Intent(Home.this,Map.class);
             startActivity(notify);
 
         } else if (id == R.id.nav_send) {
