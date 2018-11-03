@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -78,7 +79,7 @@ public class InsertCar extends AppCompatActivity {
             public void onClick(View v) {
                 if (stTypeCode.isChecked() == true) {
                     Intent infor = new Intent(InsertCar.this, NumberRecognition.class);
-                    startActivity(infor);
+                    startActivityForResult(infor,200);
                 }
             }
         });
@@ -129,6 +130,24 @@ public class InsertCar extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==200){
+            if(resultCode== CommonStatusCodes.SUCCESS){
+                if(data!=null){
+                    String text=data.getStringExtra("TextBlock");
+                    // Toast.makeText(this, ""+text, Toast.LENGTH_SHORT).show();
+                    edtVim.setText(text);
+
+                }else{
+                    edtVim.setText("NULL");
+                }
+            }
+
+        }else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
 

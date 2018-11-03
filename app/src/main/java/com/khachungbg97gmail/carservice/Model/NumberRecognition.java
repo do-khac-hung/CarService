@@ -1,6 +1,7 @@
 package com.khachungbg97gmail.carservice.Model;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,8 +12,8 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.TextView;
 
+import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
@@ -25,7 +26,6 @@ public class NumberRecognition extends AppCompatActivity {
     private static final int CAMERA_REQUEST_ID = 2122;
 
     SurfaceView cameraView;
-    TextView txtRecognized;
     CameraSource cameraSource;
 
     @Override
@@ -65,7 +65,6 @@ public class NumberRecognition extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number_recognition);
         cameraView = (SurfaceView)findViewById(R.id.surfaceView);
-        txtRecognized =(TextView)findViewById(R.id.txtRecognized);
 
         TextRecognizer textRecognizer = new TextRecognizer.Builder(this).build();
         if (textRecognizer.isOperational()) {
@@ -113,24 +112,12 @@ public class NumberRecognition extends AppCompatActivity {
                 @Override
                 public void receiveDetections(Detector.Detections<TextBlock> detections) {
                     final SparseArray<TextBlock> items = detections.getDetectedItems();
-                    txtRecognized.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (items.size() == 0) {
-                                txtRecognized.setText("");
-                                txtRecognized.setVisibility(View.INVISIBLE);
-                            } else {
-                                StringBuilder stringBuilder = new StringBuilder();
-                                for (int i = 0; i < items.size(); i++) {
-                                    TextBlock item = items.valueAt(i);
-                                    stringBuilder.append(item.getValue());
-                                    stringBuilder.append("\n");
-                                }
-                                txtRecognized.setText(stringBuilder.toString());
-                                txtRecognized.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    });
+                     if(items.size()>0){
+                         Intent intent=new Intent();
+                         intent.putExtra("TextBlock",items.valueAt(0).getValue().toString());
+                         setResult(CommonStatusCodes.SUCCESS,intent);
+                         finish();
+                     }
                 }
             });
         } else {

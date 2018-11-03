@@ -174,6 +174,10 @@ public class Home extends AppCompatActivity
             Intent mCheck=new Intent(Home.this,GetPost.class);
             startActivity(mCheck);
 
+        }else if(id==R.id.nav_details){
+            Intent mDetails=new Intent(Home.this,CarDetails.class);
+            startActivity(mDetails);
+
         }
         else if (id == R.id.nav_notify) {
             Intent notify=new Intent(Home.this,Map.class);

@@ -77,7 +77,8 @@
         <activity android:name=".ResetPassword" />
         <activity android:name=".ChooseService" />
         <activity android:name=".Schedules" />
-        <activity android:name=".Map"></activity>
+        <activity android:name=".Map" />
+        <activity android:name=".CarDetails"></activity>
     </application>
 
 </manifest>

@@ -41,4 +41,5 @@
     <string name="btn_back" translatable="false"><![CDATA[<< Trở lại]]></string>
     <string name="btn_forgot_password" translatable="false">Quên mật khẩu?</string>
     <string name="btn_reset_password" translatable="false">Đặt lại mật khẩu</string>
+    <string name="CarDetails" translatable="false">Thông tin chi tiết xe</string>
 </resources>

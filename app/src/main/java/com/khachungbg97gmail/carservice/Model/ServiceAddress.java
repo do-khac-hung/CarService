@@ -12,6 +12,24 @@ public class ServiceAddress {
     private String icon;
     private String id;
     private String name;
+    private Double rating;
+
+    public ServiceAddress(LatLng loca, String formatted_address, String icon, String id, String name, Double rating) {
+        this.loca = loca;
+        this.formatted_address = formatted_address;
+        this.icon = icon;
+        this.id = id;
+        this.name = name;
+        this.rating = rating;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
 
     public ServiceAddress(LatLng loca, String formatted_address, String icon, String id, String name) {
         this.loca = loca;

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_margin="15dp"
+    android:layout_centerInParent="true"
+    android:layout_height="wrap_content">
+    <TableRow>
+        <TextView
+            android:layout_margin="10dp"
+            android:text="Nhà sản xuất:"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtManufacter"
+            android:text="NULL"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_margin="10dp"
+            android:text="Quốc gia:"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtCountry"
+            android:text="NULL"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_margin="10dp"
+            android:text="Năm sản xuất:"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtYear"
+            android:text="NULL"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_margin="10dp"
+            android:text="Số Seri:"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtSeri"
+            android:text="NULL"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_margin="10dp"
+            android:text="Weight Digit:"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtweightDigit"
+            android:text="NULL"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_margin="10dp"
+            android:text="assembly plant identifier:"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtPlant"
+            android:text="NULL"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_margin="10dp"
+            android:text="Vehicle description code:"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/description"
+            android:text="NULL"/>
+    </TableRow>
+
+</TableLayout>
+    </RelativeLayout>

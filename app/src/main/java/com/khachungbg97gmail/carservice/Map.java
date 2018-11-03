@@ -12,6 +12,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -50,7 +51,7 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
     LocationManager manager;
     private FusedLocationProviderApi client;
     private Location location;
-    private Double lat,lng;
+    private Double lat, lng;
     String url;
     //Initializing the GoogleApiClient object
     private GoogleApiClient googleApiClient;
@@ -63,7 +64,10 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
         Toolbar tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
         tb.setSubtitle("Map");
-
+        FragmentManager fm= getSupportFragmentManager();
+        PlaceOnMapFragment placeFragment = new PlaceOnMapFragment();
+        fm.beginTransaction().replace(R.id.map_frame, placeFragment).commit();
+        client= LocationServices.FusedLocationApi;
         recyclerView = findViewById(R.id.places_lst);
         if (!isGpsOn()) {
             showSettingsAlert();
@@ -159,14 +163,16 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+
         location = client.getLastLocation(googleApiClient);
-        if(location!= null){
-            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?location="+location.getLatitude()+","+location.getLongitude()+"&radius=5000&query=ford&key=AIzaSyBz6QP1SJk37CLobZ-GEsF895lJfwka1JY";
+      //  mMap.setMyLocationEnabled(true);
+        if (location != null) {
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?location=" + location.getLatitude() + "," + location.getLongitude() + "&radius=5000&query=ford&key=AIzaSyBz6QP1SJk37CLobZ-GEsF895lJfwka1JY";
             ReadJson(url);
         }
     }
-    public void ReadJson(String url){
 
+    public void ReadJson(String url) {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -180,13 +186,14 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
                             List<ServiceAddress> placesList = new ArrayList<ServiceAddress>();
                             JSONArray jsonArray = response.getJSONArray("results");
 
-                            for(int i = 0;i<jsonArray.length();i++){
+                            for (int i=0;i<jsonArray.length();i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                                 String formatted_address = jsonObject.getString("formatted_address");
                                 String name = jsonObject.getString("name");
                                 String id = jsonObject.getString("id");
                                 String icon = jsonObject.getString("icon");
+                                Double rating = jsonObject.getDouble("rating");
 
                                 JSONObject geometry = jsonObject.getJSONObject("geometry");
                                 JSONObject location = geometry.getJSONObject("location");
@@ -195,12 +202,13 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
 
                                 LatLng ltn = new LatLng(lat,lng);
 
-                                placesList.add(new ServiceAddress(ltn,formatted_address,icon,id,name));
+                                placesList.add(new ServiceAddress(ltn,formatted_address,icon,id,name,rating));
 
+                               // mMap.addMarker(new MarkerOptions().position(placesList.get(i).getLoca()).title(name));
 
                                 Log.d("AAA",placesList.toString());
                             }
-                            PlaceAdapter placeAdapter=new PlaceAdapter(placesList,Map.this);
+                            PlaceAdapter placeAdapter = new PlaceAdapter(placesList,Map.this);
                             recyclerView.setAdapter(placeAdapter);
 
                         } catch (JSONException e) {
@@ -279,23 +287,5 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
     }
 
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.places_menu, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.view_places_m:
-//                getCurrentPlaceItems();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 
 }

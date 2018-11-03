@@ -1,6 +1,9 @@
 package com.khachungbg97gmail.carservice.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -60,11 +63,13 @@ public class PlaceAdapter  extends
 //            holder.website.setText(place.getWebsiteUri().toString());
 //        }
 //
-//        if(place.getRating() > -1){
-//            holder.ratingBar.setNumStars((int)place.getRating());
-//        }else{
-//            holder.ratingBar.setVisibility(View.GONE);
-//        }
+        if(place.getRating() > -1){
+            holder.ratingBar.setNumStars(place.getRating().intValue());
+            Drawable drawable = holder.ratingBar.getProgressDrawable();
+            drawable.setColorFilter(Color.parseColor("#0064A8"), PorterDuff.Mode.SRC_ATOP);
+        }else{
+            holder.ratingBar.setVisibility(View.GONE);
+        }
 
         holder.viewOnMap.setOnClickListener(new View.OnClickListener() {
             @Override

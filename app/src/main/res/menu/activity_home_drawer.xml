@@ -23,6 +23,10 @@
             android:icon="@drawable/ic_visibility_black_24dp"
             android:title="@string/checkE" />
         <item
+            android:id="@+id/nav_details"
+            android:icon="@drawable/ic_library_books_black_24dp"
+            android:title="@string/CarDetails" />
+        <item
             android:id="@+id/nav_howto"
             android:icon="@drawable/ic_play_circle_outline_black_24dp"
             android:title="How to video" />
