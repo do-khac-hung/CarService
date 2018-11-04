@@ -143,6 +143,9 @@ public class CarDetails extends AppCompatActivity {
         dialog.show();
 
     }
+    public void RestAPI(String url){
+
+    }
     public static class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
         public TextView txtVinCode;
         private ItemClickListener itemClickListener;

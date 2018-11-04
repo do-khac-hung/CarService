@@ -53,6 +53,8 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
     private Location location;
     private Double lat, lng;
     String url;
+    FragmentManager fm;
+    PlaceOnMapFragment placeFragment;
     //Initializing the GoogleApiClient object
     private GoogleApiClient googleApiClient;
 
@@ -64,9 +66,9 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
         Toolbar tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
         tb.setSubtitle("Map");
-        FragmentManager fm= getSupportFragmentManager();
-        PlaceOnMapFragment placeFragment = new PlaceOnMapFragment();
-        fm.beginTransaction().replace(R.id.map_frame, placeFragment).commit();
+        fm= getSupportFragmentManager();
+        placeFragment = new PlaceOnMapFragment();
+
         client= LocationServices.FusedLocationApi;
         recyclerView = findViewById(R.id.places_lst);
         if (!isGpsOn()) {
@@ -167,6 +169,13 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
         location = client.getLastLocation(googleApiClient);
       //  mMap.setMyLocationEnabled(true);
         if (location != null) {
+            Bundle bundle=new Bundle();
+            bundle.putString("name", "Vị trí hiện tại");
+            bundle.putString("address", "Địa điểm");
+            bundle.putDouble("lat", location.getLatitude());
+            bundle.putDouble("lng", location.getLongitude());
+            placeFragment.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.map_frame, placeFragment).commit();
             url = "https://maps.googleapis.com/maps/api/place/textsearch/json?location=" + location.getLatitude() + "," + location.getLongitude() + "&radius=5000&query=ford&key=AIzaSyBz6QP1SJk37CLobZ-GEsF895lJfwka1JY";
             ReadJson(url);
         }
@@ -251,6 +260,7 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
     @Override
     protected void onResume() {
         super.onResume();
+        googleApiClient.connect();
     }
 
 

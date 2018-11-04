@@ -86,7 +86,7 @@ public class Home extends AppCompatActivity
         mAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mMap=new Intent(Home.this,maps.class);
+                Intent mMap=new Intent(Home.this,Map.class);
                 startActivity(mMap);
             }
         });
@@ -163,7 +163,7 @@ public class Home extends AppCompatActivity
             startActivity(infor);
 
         } else if (id == R.id.nav_address) {
-            Intent mMap=new Intent(Home.this,maps.class);
+            Intent mMap=new Intent(Home.this,Map.class);
             startActivity(mMap);
 
         } else if (id == R.id.nav_manage) {
