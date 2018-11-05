@@ -34,6 +34,7 @@ import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.khachungbg97gmail.carservice.Adapter.PlaceAdapter;
 import com.khachungbg97gmail.carservice.Model.ServiceAddress;
 
@@ -210,8 +211,9 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
                                 lng = location.getDouble("lng");
 
                                 LatLng ltn = new LatLng(lat,lng);
-
-                                placesList.add(new ServiceAddress(ltn,formatted_address,icon,id,name,rating));
+                                ServiceAddress serviceAddress=new ServiceAddress(ltn,formatted_address,icon,id,name,rating);
+                                placesList.add(serviceAddress);
+                                placeFragment.mMap.addMarker(new MarkerOptions().position(serviceAddress.getLoca()).title(serviceAddress.getName()));
 
                                // mMap.addMarker(new MarkerOptions().position(placesList.get(i).getLoca()).title(name));
 
@@ -261,6 +263,7 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
     protected void onResume() {
         super.onResume();
         googleApiClient.connect();
+        getCurrentPlaceItems();
     }
 
 

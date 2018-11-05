@@ -91,7 +91,8 @@ public class SignIn extends AppCompatActivity {
 
                                                 @Override
                                                 public void onCancelled(DatabaseError databaseError) {
-
+                                                    mDialog.dismiss();
+                                                    Toast.makeText(SignIn.this, "Email or pass is incorrect", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
 
@@ -100,7 +101,7 @@ public class SignIn extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             mDialog.dismiss();
-                            Toast.makeText(SignIn.this, "User not exist in database", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignIn.this, "Check the connection", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

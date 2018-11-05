@@ -19,6 +19,7 @@ import com.khachungbg97gmail.carservice.Model.ChatUser;
 import com.khachungbg97gmail.carservice.Model.Schedule;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class Maintenance extends AppCompatActivity {
     EditText edtNote;
@@ -51,9 +52,8 @@ public class Maintenance extends AppCompatActivity {
         btnSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // now.set(datePicker.getYear(),datePicker.getMonth()+1,datePicker.getDayOfMonth(),time.getCurrentHour(),time.getCurrentMinute(),00);
                 now.set(Calendar.YEAR, datePicker.getYear());
-                now.set(Calendar.MONTH, datePicker.getMonth()+1);
+                now.set(Calendar.MONTH, datePicker.getMonth());
                 now.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
                 now.set(Calendar.HOUR_OF_DAY, time.getCurrentHour());
                 now.set(Calendar.MINUTE, time.getCurrentMinute());
@@ -62,6 +62,8 @@ public class Maintenance extends AppCompatActivity {
                 if(now.compareTo(current)<=0){
                     Toast.makeText(Maintenance.this,"invalid time",Toast.LENGTH_LONG).show();
                 }else{
+                    Date Date=now.getTime();
+                    Toast.makeText(Maintenance.this, ""+Date, Toast.LENGTH_LONG).show();
                     String note=edtNote.getText().toString();
                     int month=datePicker.getMonth()+1;
                     String date =datePicker.getYear()+"-"+month+"-"+datePicker.getDayOfMonth();
@@ -70,9 +72,7 @@ public class Maintenance extends AppCompatActivity {
                     String timeSchedule=time.getCurrentHour()+":"+time.getCurrentMinute();
                     //String vinCode= currentVin.getVinCode();
                     Schedule schedule=new Schedule(date,note,idUser,Vin,accessories,timeSchedule);
-                    //Toast.makeText(Maintenance.this," " +now, Toast.LENGTH_LONG).show();
-                 //   Schedule schedule1=new Schedule(date,note,idUser,accessories,timeSchedule);
-                    table_schedule.child(date).setValue(schedule);
+                    table_schedule.child(date+"_"+idUser).setValue(schedule);
                     Toast.makeText(Maintenance.this, "Successfully!!", Toast.LENGTH_SHORT).show();
                     Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
                     notificationIntent.addCategory("android.intent.category.DEFAULT");

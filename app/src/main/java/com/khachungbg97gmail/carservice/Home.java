@@ -16,16 +16,43 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.khachungbg97gmail.carservice.Common.Common;
+import com.khachungbg97gmail.carservice.Model.ChatUser;
+import com.khachungbg97gmail.carservice.Model.Schedule;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
     DatabaseReference car;
-    TextView txtName;
+    TextView txtName,txtScheduleMessage;
     ImageView mAddress,mHotline,mVideo,mSchedule,mEPC,mAdd;
+    String url="https://carservice-47a9f.firebaseio.com/Schedules.json";
+    Query mReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +67,15 @@ public class Home extends AppCompatActivity
         mSchedule=(ImageView)findViewById(R.id.mSchedule);
         mEPC=(ImageView)findViewById(R.id.mEPC);
         mAdd=(ImageView)findViewById(R.id.mAdd);
+        database=FirebaseDatabase.getInstance();
+        mReference=database.getReference().child("Schedules").orderByChild("idUser").equalTo(ChatUser.id);
+        txtScheduleMessage=(TextView)findViewById(R.id.txtScheduleMessage);
+//        if(Common.currentUser!=null) {
+//            findNearestDate(url);
+//        }
+        if(Common.currentUser!=null){
+            findNearest();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +150,47 @@ public class Home extends AppCompatActivity
 
     }
 
+    private void findNearest() {
+        final long now = System.currentTimeMillis();
+        final List<Date> dates = new ArrayList<Date>();
+        mReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                    Schedule schedule=childSnapshot.getValue(Schedule.class);
+                    if(schedule!=null){
+                        String schedules=schedule.getDate();
+                        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            Date date=df.parse(schedules);
+                            if(date.getTime()-now>=0){
+                                dates.add(date);
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+                if(!dates.isEmpty()) {
+                    Date closest = Collections.min(dates, new Comparator<Date>() {
+                        public int compare(Date d1, Date d2) {
+                            long diff1 = Math.abs(d1.getTime() - now);
+                            long diff2 = Math.abs(d2.getTime() - now);
+                            return Long.compare(diff1, diff2);
+                        }
+                    });
+                    txtScheduleMessage.setText(closest.getDate()+"|"+(closest.getMonth()+1)+"|"+(closest.getYear()+1900));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -180,7 +257,7 @@ public class Home extends AppCompatActivity
 
         }
         else if (id == R.id.nav_notify) {
-            Intent notify=new Intent(Home.this,Map.class);
+            Intent notify=new Intent(Home.this,Maintenance.class);
             startActivity(notify);
 
         } else if (id == R.id.nav_send) {
@@ -201,5 +278,50 @@ public class Home extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void findNearestDate(String url){
+        final long now = System.currentTimeMillis();
+        final List<Date> dates = new ArrayList<Date>();
+        StringRequest request=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj=new JSONObject(response);
+                    Iterator i=obj.keys();
+                    String schedules="";
+                    while (i.hasNext()){
+                        schedules=i.next().toString();
+                        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                        Date date=df.parse(schedules);
+                        if(date.getTime()-now>=0){
+                           dates.add(date);
+                        }
+                    }
+                    if(!dates.isEmpty()) {
+                        Date closest = Collections.min(dates, new Comparator<Date>() {
+                            public int compare(Date d1, Date d2) {
+                                long diff1 = Math.abs(d1.getTime() - now);
+                                long diff2 = Math.abs(d2.getTime() - now);
+                                return Long.compare(diff1, diff2);
+                            }
+                        });
+                        txtScheduleMessage.setText(closest.getDate()+"|"+closest.getMonth()+"|"+(closest.getYear()+1900));
+                    }
+                    //Toast.makeText(Home.this, ""+closest, Toast.LENGTH_SHORT).show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("" + error);
+            }
+        });
+        RequestQueue rQueue = Volley.newRequestQueue(Home.this);
+        rQueue.add(request);
     }
 }
