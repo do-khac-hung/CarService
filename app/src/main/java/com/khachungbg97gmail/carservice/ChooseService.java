@@ -71,43 +71,26 @@ public class ChooseService extends AppCompatActivity {
         edtCar=(MaterialEditText)findViewById(R.id.edtVinCar1);
         listView=(ListView)findViewById(R.id.listbd);
         listVin=new ArrayList<>();
-        listVin.add("Default");
         database= FirebaseDatabase.getInstance();
         query=database.getReference().child("Vins").orderByChild("idUser").equalTo(ChatUser.id);
+        initItem(query);
+        listVin.add(" ");
         spinnerCar=(Spinner)findViewById(R.id.spinnerCar);
         btnNext=(Button)findViewById(R.id.btnDatLich);
         updateListView(progressValue);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-                   // Toast.makeText(ChooseService.this, ""+childSnapshot.getKey(), Toast.LENGTH_SHORT).show();
-                    Vin vin=childSnapshot.getValue(Vin.class);
-                    if(vin!=null){
-                        String vinCode=vin.getVinCode();
-                        listVin.add(vinCode);
-                    }
 
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                throw databaseError.toException();
-            }
-        });
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,listVin);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spinnerCar.setAdapter(adapter);
         spinnerCar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                edtCar.setText(spinnerCar.getSelectedItem().toString());
+                edtCar.setText(listVin.get(position));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                edtCar.setText("");
             }
         });
 
@@ -168,6 +151,29 @@ public class ChooseService extends AppCompatActivity {
 
 
     }
+
+    private void initItem(Query query) {
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                    // Toast.makeText(ChooseService.this, ""+childSnapshot.getKey(), Toast.LENGTH_SHORT).show();
+                    Vin vin=childSnapshot.getValue(Vin.class);
+                    if(vin!=null){
+                        String vinCode=vin.getVinCode();
+                        listVin.add(vinCode);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
     public void updateListView(int progress){
           if(progress==0||progress==2||progress==4||progress==6){
               ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, level1);
