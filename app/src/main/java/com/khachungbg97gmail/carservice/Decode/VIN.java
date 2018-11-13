@@ -91,11 +91,11 @@ public class VIN {
         return this.value;
     }
 
-    private boolean isValidSize() {
+    public boolean isValidSize() {
         return value.length() == 17;
     }
 
-    private void assertValidCharacters() {
+    public void assertValidCharacters() {
         for (int i = 0; i < value.length(); i++) {
             String str = value.substring(i, i + 1);
             if (VinConstants.ALPHABET_INDEX.get(str) == null) {

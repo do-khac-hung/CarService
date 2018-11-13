@@ -34,7 +34,6 @@ import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.khachungbg97gmail.carservice.Adapter.PlaceAdapter;
 import com.khachungbg97gmail.carservice.Model.ServiceAddress;
 
@@ -44,6 +43,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.khachungbg97gmail.carservice.Common.Common.placesListCommon;
 
 public class Map extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     public static final String TAG = "CurrentLocNearByPlaces";
@@ -192,7 +193,7 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
                     public void onResponse(JSONObject response) {
 
                         try {
-
+                            placesListCommon=new ArrayList<ServiceAddress>();
                             List<ServiceAddress> placesList = new ArrayList<ServiceAddress>();
                             JSONArray jsonArray = response.getJSONArray("results");
 
@@ -213,7 +214,7 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
                                 LatLng ltn = new LatLng(lat,lng);
                                 ServiceAddress serviceAddress=new ServiceAddress(ltn,formatted_address,icon,id,name,rating);
                                 placesList.add(serviceAddress);
-                                placeFragment.mMap.addMarker(new MarkerOptions().position(serviceAddress.getLoca()).title(serviceAddress.getName()));
+                             //   placeFragment.mMap.addMarker(new MarkerOptions().position(serviceAddress.getLoca()).title(serviceAddress.getName()));
 
                                // mMap.addMarker(new MarkerOptions().position(placesList.get(i).getLoca()).title(name));
 
@@ -221,7 +222,7 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
                             }
                             PlaceAdapter placeAdapter = new PlaceAdapter(placesList,Map.this);
                             recyclerView.setAdapter(placeAdapter);
-
+                            placesListCommon.addAll(placesList);
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.d("AAA",e.toString());
@@ -246,7 +247,7 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        googleApiClient.connect();
     }
 
     @Override
@@ -261,14 +262,16 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
     }
     @Override
     protected void onResume() {
+        placeFragment.onResume();
         super.onResume();
-        googleApiClient.connect();
-        getCurrentPlaceItems();
+//        googleApiClient.connect();
+//        getCurrentPlaceItems();
     }
 
 
     @Override
     protected void onPause() {
+        placeFragment.onPause();
         super.onPause();
 
     }
@@ -282,8 +285,9 @@ public class Map extends AppCompatActivity implements GoogleApiClient.Connection
 
     @Override
     protected void onStop() {
+        placeFragment.onStop();
         super.onStop();
-        googleApiClient.disconnect();
+        //googleApiClient.disconnect();
     }
 
 

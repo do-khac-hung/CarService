@@ -85,9 +85,13 @@ public class CarDetails extends AppCompatActivity {
             public void onClick(View v) {
                 String vinCode=edtVinCode.getText().toString();
                 //validate
-
-                //xu ly
-                getData(vinCode);
+                if(vinCode.length()==17) {
+                    //xu ly
+                    getData(vinCode);
+                    //RestAPI(vinCode);
+                }else{
+                    Toast.makeText(CarDetails.this, "Nhập lại hoặc scan lại vin code", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

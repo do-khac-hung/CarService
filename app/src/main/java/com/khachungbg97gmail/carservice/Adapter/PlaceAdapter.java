@@ -58,11 +58,8 @@ public class PlaceAdapter  extends
         final ServiceAddress place = placesList.get(position);
         holder.name.setText(place.getName());
         holder.address.setText(place.getFormatted_address());
-        holder.phone.setText(place.getId());
-//        if(place.getWebsiteUri() != null){
-//            holder.website.setText(place.getWebsiteUri().toString());
-//        }
-//
+        holder.place.setText(place.getLoca().toString());
+
         if(place.getRating() > -1){
             holder.ratingBar.setNumStars(place.getRating().intValue());
             Drawable drawable = holder.ratingBar.getProgressDrawable();
@@ -85,8 +82,7 @@ public class PlaceAdapter  extends
 
         public TextView name;
         public TextView address;
-        public TextView phone;
-        public TextView website;
+        public TextView place;
         public RatingBar ratingBar;
 
         public Button viewOnMap;
@@ -97,8 +93,7 @@ public class PlaceAdapter  extends
 
             name = view.findViewById(R.id.name);
             address = view.findViewById(R.id.address);
-            phone = view.findViewById(R.id.phone);
-            website = view.findViewById(R.id.website);
+            place = view.findViewById(R.id.place);
             ratingBar = view.findViewById(R.id.rating);
 
             viewOnMap = view.findViewById(R.id.view_map_b);
