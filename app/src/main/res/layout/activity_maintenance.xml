@@ -14,34 +14,47 @@
         android:textColor="@android:color/background_dark"
         android:textSize="25dp"
         android:layout_margin="3dp"/>
+    <EditText
+        android:layout_marginLeft="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/note"
+        android:id="@+id/note"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ChooseDateTime"
+        android:gravity="left"
+        android:textColor="@android:color/background_dark"
+        android:textSize="15dp"
+        android:layout_margin="3dp"/>
    <DatePicker
-       android:layout_marginTop="10dp"
-       android:layout_width="wrap_content"
-       android:layout_height="350dp"
-       android:layout_marginLeft="10dp"
+       android:layout_marginTop="5dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:scaleX="0.9"
+       android:scaleY="0.9"
+       android:datePickerMode="spinner"
        android:id="@+id/datePicker">
    </DatePicker>
     <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:id="@+id/timePicker"></TimePicker>
-    <EditText
-        android:layout_marginLeft="10dp"
-        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:text="@string/note"
-        android:id="@+id/note"
-        />
+        android:layout_weight=".33"
+        android:layout_width="match_parent"
+        android:textSize="12sp"
+        android:id="@+id/timePicker"></TimePicker>
+
     <info.hoang8f.widget.FButton
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnSet"
         android:text="@string/save"
         android:layout_alignParentBottom="true"
         app:buttonColor="@color/btnSignUp"
         android:textColor="@android:color/white"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="150dp"
+        android:layout_marginTop="35dp"
         />
 
 

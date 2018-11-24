@@ -62,8 +62,8 @@ public class Schedules extends AppCompatActivity {
         ) {
             @Override
             protected void populateViewHolder(ScheduleViewHolder viewHolder, Schedule model, int position) {
-                viewHolder.txtTitle.setText("Cấp bảo dưỡng:"+model.getAccessory());
-                viewHolder.txtVin.setText("Xe:"+model.getIdVin());
+                viewHolder.txtTitle.setText("Cấp:"+Integer.parseInt(model.getAccessory())*5000+"KM");
+                viewHolder.txtVin.setText(model.getIdVin());
                 viewHolder.txtNote.setText("Note:"+model.getNote());
                 viewHolder.txtTime.setText(model.getTime());
                 viewHolder.txtDate.setText(model.getDate());

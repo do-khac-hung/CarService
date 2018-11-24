@@ -53,10 +53,11 @@ public class PlaceOnMapFragment extends Fragment implements OnMapReadyCallback {
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setMinZoomPreference(11);
-        for(int i=0;i<placesListCommon.size();i++){
-            mMap.addMarker(new MarkerOptions().position(placesListCommon.get(i).getLoca()).title(placesListCommon.get(i).getName()));
+        if(!placesListCommon.isEmpty()) {
+            for (int i = 0; i < placesListCommon.size(); i++) {
+                mMap.addMarker(new MarkerOptions().position(placesListCommon.get(i).getLoca()).title(placesListCommon.get(i).getName()));
+            }
         }
-
         LatLng placeLoc = new LatLng(lat, lng);
 
         MarkerOptions markerOptions = new MarkerOptions();

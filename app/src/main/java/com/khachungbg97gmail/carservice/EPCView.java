@@ -23,11 +23,11 @@ public class EPCView extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView web, String url) {
                 // TODO Auto-generated method stub
-                String uname = "0927095635";
+                String uname = "do-khac-hung";
                 String pass = "handess7620";
-                web.loadUrl("javascript:(function(){document.getElementsByName('email')[0].value='"
+                web.loadUrl("javascript:(function(){document.getElementsByName('login')[0].value='"
                         + uname
-                        + "';document.getElementsByName('pass')[0].value='"
+                        + "';document.getElementsByName('password')[0].value='"
                         + pass + "';document.getElementsByTagName('form')[0].submit();})()");
             }
         });

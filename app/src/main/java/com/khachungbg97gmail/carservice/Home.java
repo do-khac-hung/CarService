@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -112,6 +113,7 @@ public class Home extends AppCompatActivity
             nav_manage.setEnabled(false);
             nav_send.setEnabled(false);
             nav_check.setEnabled(false);
+            mSchedule.setEnabled(false);
         }
         //set Name for user
         View headerView=navigationView.getHeaderView(0);
@@ -145,6 +147,20 @@ public class Home extends AppCompatActivity
             public void onClick(View v) {
                 Intent mEpc=new Intent(Home.this,EPCView.class);
                 startActivity(mEpc);
+            }
+        });
+        mAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.openDrawer(Gravity.START);
+            }
+        });
+        mSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mSchedule=new Intent(Home.this,ChooseService.class);
+                startActivity(mSchedule);
             }
         });
 

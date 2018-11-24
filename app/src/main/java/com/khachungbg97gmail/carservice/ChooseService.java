@@ -73,19 +73,29 @@ public class ChooseService extends AppCompatActivity {
         listVin=new ArrayList<>();
         database= FirebaseDatabase.getInstance();
         query=database.getReference().child("Vins").orderByChild("idUser").equalTo(ChatUser.id);
-        initItem(query);
-        listVin.add(" ");
-        spinnerCar=(Spinner)findViewById(R.id.spinnerCar);
-        btnNext=(Button)findViewById(R.id.btnDatLich);
-        updateListView(progressValue);
+       // initItem(query);
+        //listVin.add(" ");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<String> listE = new ArrayList<String>();
+                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                    //Toast.makeText(ChooseService.this, ""+childSnapshot.getKey(), Toast.LENGTH_SHORT).show();
+                    Vin vin=childSnapshot.getValue(Vin.class);
+                    if(vin!=null){
+                        String vinCode=vin.getVinCode();
+                        listE.add(vinCode);
+                    }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,listVin);
-        adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        spinnerCar.setAdapter(adapter);
-        spinnerCar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                }
+                spinnerCar=(Spinner)findViewById(R.id.spinnerCar);
+                ArrayAdapter<String> adapter = new ArrayAdapter(ChooseService.this, android.R.layout.simple_spinner_item,listE);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerCar.setAdapter(adapter);
+                spinnerCar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                edtCar.setText(listVin.get(position));
+                edtCar.setText(listE.get(position));
             }
 
             @Override
@@ -93,6 +103,32 @@ public class ChooseService extends AppCompatActivity {
                 edtCar.setText("");
             }
         });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+
+       // spinnerCar=(Spinner)findViewById(R.id.spinnerCar);
+        btnNext=(Button)findViewById(R.id.btnDatLich);
+        updateListView(progressValue);
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,listVin);
+//        adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+//        spinnerCar.setAdapter(adapter);
+//        spinnerCar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                edtCar.setText(listVin.get(position));
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                edtCar.setText("");
+//            }
+//        });
 
         ImAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +136,7 @@ public class ChooseService extends AppCompatActivity {
                 if(seekbar.getProgress()<8){
                     seekbar.setProgress(seekbar.getProgress()+1);
                     progressValue=seekbar.getProgress();
-                    txtLevel.setText(""+progressValue);
+                    txtLevel.setText(""+progressValue*5000+"KM");
                     updateListView(progressValue);
                 }
             }
@@ -111,7 +147,7 @@ public class ChooseService extends AppCompatActivity {
                 if(seekbar.getProgress()>0){
                     seekbar.setProgress(seekbar.getProgress()-1);
                     progressValue=seekbar.getProgress();
-                    txtLevel.setText(""+progressValue);
+                    txtLevel.setText(""+progressValue*5000+"KM");
                     updateListView(progressValue);
                 }
             }
@@ -133,7 +169,7 @@ public class ChooseService extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Toast.makeText(ChooseService.this, "Seek bar progress is :" + progressValue,
                         Toast.LENGTH_SHORT).show();
-                txtLevel.setText(""+progressValue);
+                txtLevel.setText(""+progressValue*5000+"KM");
                 updateListView(progressValue);
 
             }
