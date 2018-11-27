@@ -38,6 +38,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //add library
+    compile 'io.paperdb:paperdb:2.6'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.firebase:firebase-core:9.6.1'

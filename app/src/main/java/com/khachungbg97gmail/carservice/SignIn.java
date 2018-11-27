@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,12 +25,15 @@ import com.khachungbg97gmail.carservice.Model.ChatUser;
 import com.khachungbg97gmail.carservice.Model.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import io.paperdb.Paper;
+
 import static com.khachungbg97gmail.carservice.R.id.Password;
 
 public class SignIn extends AppCompatActivity {
     EditText edtEmail,edtPass;
     Button btnSignIn,btnReset;
     String email, pass;
+    CheckBox chbRemember;
     FirebaseDatabase database;
     DatabaseReference table_user;
     FirebaseAuth auth;
@@ -41,6 +45,9 @@ public class SignIn extends AppCompatActivity {
         edtPass = (MaterialEditText) findViewById(Password);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
         btnReset=(Button)findViewById(R.id.btn_reset_password);
+        chbRemember=(CheckBox)findViewById(R.id.checkbox);
+        //init paper
+        Paper.init(this);
        //init firebase
         database = FirebaseDatabase.getInstance();
         table_user = database.getReference("Users");
@@ -67,6 +74,10 @@ public class SignIn extends AppCompatActivity {
                     edtPass.setError("Password with a character count greater than 5");
                 }
                 else {
+                    if(chbRemember.isChecked()){
+                        Paper.book().write(Common.EMAIL_KEY,email);
+                        Paper.book().write(Common.PWD_KEY,pass);
+                    }
                     final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
                     mDialog.setMessage("Please waiting ...");
                     mDialog.show();

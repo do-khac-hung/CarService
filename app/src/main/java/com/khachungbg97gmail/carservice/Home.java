@@ -46,6 +46,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import io.paperdb.Paper;
+
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
@@ -68,6 +70,8 @@ public class Home extends AppCompatActivity
         mSchedule=(ImageView)findViewById(R.id.mSchedule);
         mEPC=(ImageView)findViewById(R.id.mEPC);
         mAdd=(ImageView)findViewById(R.id.mAdd);
+        //init paper
+        Paper.init(this);
         database=FirebaseDatabase.getInstance();
         mReference=database.getReference().child("Schedules").orderByChild("idUser").equalTo(ChatUser.id);
         txtScheduleMessage=(TextView)findViewById(R.id.txtScheduleMessage);
@@ -281,6 +285,8 @@ public class Home extends AppCompatActivity
             startActivity(mHotLine);
 
         }else if (id == R.id.nav_logout) {
+            //delete email ,pass
+            Paper.book().destroy();
             Intent SignOut= new Intent(Home.this,MainActivity.class);
             SignOut.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(SignOut);

@@ -17,4 +17,6 @@ public class Common {
     public static Vin currentVin;
     public static ArrayList<Notification>notificationList;
     public static List<ServiceAddress> placesListCommon;
+    public static final String EMAIL_KEY="email";
+    public static final String PWD_KEY="pass";
 }
