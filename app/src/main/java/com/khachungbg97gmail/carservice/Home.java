@@ -268,7 +268,7 @@ public class Home extends AppCompatActivity
             startActivity(choose);
 
         }else if(id==R.id.nav_check){
-            Intent mCheck=new Intent(Home.this,GetPost.class);
+            Intent mCheck=new Intent(Home.this,CheckEviction.class);
             startActivity(mCheck);
 
         }else if(id==R.id.nav_details){
@@ -277,7 +277,7 @@ public class Home extends AppCompatActivity
 
         }
         else if (id == R.id.nav_notify) {
-            Intent notify=new Intent(Home.this,Maintenance.class);
+            Intent notify=new Intent(Home.this,GetPost.class);
             startActivity(notify);
 
         } else if (id == R.id.nav_send) {

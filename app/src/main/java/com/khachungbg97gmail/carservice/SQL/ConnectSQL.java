@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class ConnectSQL {
     String ip = "carexp.net";
     String classs = "net.sourceforge.jtds.jdbc.Driver";
-    String db = "CareXP_Moto";
+    String db = "CareXP_CMS";
     String un = "CareXPWebApp";
     String password = "9b1664dc1a44702385c2c4a074250b91";
 

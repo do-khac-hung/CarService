@@ -55,7 +55,6 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".NotificationList" />
         <activity android:name=".EPCView" />
         <activity android:name=".PersonalInformation" />
         <activity android:name=".CheckEviction" />

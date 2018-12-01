@@ -41,8 +41,8 @@ public class Chat extends AppCompatActivity {
         if(!ChatUser.username.equals("hoangnt")){
             ChatUser.chatWith="v3R1XnnI1hX4hHFsiRVgPA83LpI3";
         }
-        reference1 = new Firebase("https://carservice-47a9f.firebaseio.com/Messages/" + ChatUser.id + "_" + ChatUser.chatWith);
-        reference2 = new Firebase("https://carservice-47a9f.firebaseio.com/Messages/" + ChatUser.chatWith + "_" + ChatUser.id);
+        reference1 = new Firebase("https://carservice-47a9f.firebaseio.com/Messages/" + ChatUser.id);
+        //reference2 = new Firebase("https://carservice-47a9f.firebaseio.com/Messages/" + ChatUser.chatWith + "_" + ChatUser.id);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +53,8 @@ public class Chat extends AppCompatActivity {
                     map.put("message",textMessage);
                     map.put("user_id",ChatUser.username);
                     reference1.push().setValue(map);
-                    reference2.push().setValue(map);
-
+                    //reference2.push().setValue(map);
+                    edtMessage.getText().clear();
 
                 }
             }

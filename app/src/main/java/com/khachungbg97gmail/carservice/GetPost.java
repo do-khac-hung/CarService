@@ -2,12 +2,12 @@ package com.khachungbg97gmail.carservice;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.khachungbg97gmail.carservice.SQL.ConnectSQL;
 
@@ -46,17 +46,17 @@ public class GetPost extends AppCompatActivity {
                 z="Error in connect with SQL server";
             }
             else{
-                String query="Select * from Posts";
+                String query="Select ModifiedDate,Subject,MainContent,FeatureImage from Posts";
                 try {
                     PreparedStatement ps=connection.prepareStatement(query);
                     ResultSet rs=ps.executeQuery();
                    // ArrayList data = new ArrayList();
                     while(rs.next()){
                         Map<String,String>datanum=new HashMap<String,String>();
-                        datanum.put("ID",rs.getString("ID"));
-                        datanum.put("Status",rs.getString("Status"));
-                        datanum.put("VIN",rs.getString("VIN"));
-                        datanum.put("Model",rs.getString("Model"));
+                        datanum.put("ModifiedDate", String.valueOf(rs.getDate("ModifiedDate")));
+                        datanum.put("Subject",rs.getString("Subject"));
+                        datanum.put("MainContent",rs.getString("MainContent"));
+                        datanum.put("FeatureImage",rs.getString("FeatureImage"));
                         list.add(datanum);
 
                     }
@@ -71,8 +71,8 @@ public class GetPost extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(GetPost.this, s, Toast.LENGTH_SHORT).show();
-            String[] from={"ID","Status","VIN","Model"};
+            //Toast.makeText(GetPost.this, s, Toast.LENGTH_SHORT).show();
+            String[] from={"ModifiedDate","Subject","MainContent","FeatureImage"};
             int[] views={R.id.txtID,R.id.txtStatus,R.id.txtVin,R.id.txtmodel};
             final SimpleAdapter adapter=new SimpleAdapter(GetPost.this,list,R.layout.row_post,from,views);
             listPost.setAdapter(adapter);
@@ -80,11 +80,16 @@ public class GetPost extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     HashMap<String,Object>obj= (HashMap<String, Object>) adapter.getItem(position);
-                    String ID=(String)obj.get("ID");
-                    String Status=(String)obj.get("Status");
-                    String VIN=(String)obj.get("VIN");
-                    String Model=(String)obj.get("Model");
-
+                    String ModifiedDate=(String)obj.get("ModifiedDate");
+                    String Subject=(String)obj.get("Subject");
+                    String MainContent=(String)obj.get("MainContent");
+                    String FeatureImage=(String)obj.get("FeatureImage");
+                    //Toast.makeText(GetPost.this, ""+FeatureImage, Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(GetPost.this);
+                            builder.setTitle(Subject);
+                            builder.setMessage(MainContent);
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
                 }
             });
             super.onPostExecute(s);
