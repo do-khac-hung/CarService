@@ -16,7 +16,7 @@
         android:textSize="10sp"
         android:layout_weight="0.5"
         android:text="02 Oct 2018"
-        android:id="@+id/txtID"/>
+        android:id="@+id/ModifiedDate"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
         android:text="Subject"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:id="@+id/txtStatus"/>
+        android:id="@+id/Subject"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,12 +38,5 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textAlignment="center"
-        android:id="@+id/txtVin"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:textSize="10sp"
-        android:text="MOTOROLA"
-        android:id="@+id/txtmodel"/>
+        android:id="@+id/MainContent"/>
 </LinearLayout>

@@ -14,21 +14,25 @@ public class EPCView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_epcview);
         epcView =(WebView)findViewById(R.id.epcView);
-        epcView.loadUrl("https://github.com/login");
+        epcView.loadUrl("http://carexp.net/Account/Login?ReturnUrl=%2f");
         WebSettings webSettings=epcView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
+        webSettings.setUseWideViewPort(true);
         epcView.setWebViewClient(new WebViewClient() {
 
             @Override
             public void onPageFinished(WebView web, String url) {
                 // TODO Auto-generated method stub
-                String uname = "do-khac-hung";
-                String pass = "handess7620";
-                web.loadUrl("javascript:(function(){document.getElementsByName('login')[0].value='"
+                String uname = "admin";
+                String pass = "1234567";
+//                web.loadUrl("javascript:(function(){document.getElementsByName('Username')[0].value='"
+//                        + uname
+//                        + "';document.getElementsByName('Password')[0].value='"
+//                        + pass + "';document.getElementsByTagName('form')[0].submit();})()");
+                web.loadUrl("javascript:(function(){document.getElementsByName('Username')[0].value='"
                         + uname
-                        + "';document.getElementsByName('password')[0].value='"
-                        + pass + "';document.getElementsByTagName('form')[0].submit();})()");
+                        + "';document.getElementsByName('Password')[0].value='"
+                        + pass + "';})()");
             }
         });
     }

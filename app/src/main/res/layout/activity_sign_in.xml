@@ -27,7 +27,6 @@
             android:hint="Email"
             android:textColorHint="@android:color/white"
             android:inputType="text"
-            android:text="khachungbg97@gmail.com"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:layout_marginTop="2dp"
@@ -40,7 +39,6 @@
             android:textColorHint="@android:color/white"
             android:inputType="textPassword"
             android:textColor="@android:color/white"
-            android:text="handess7620"
             android:textSize="20sp"
             android:layout_marginTop="2dp"
             app:met_maxCharacters="11"/>

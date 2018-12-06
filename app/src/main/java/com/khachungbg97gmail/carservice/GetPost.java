@@ -46,7 +46,7 @@ public class GetPost extends AppCompatActivity {
                 z="Error in connect with SQL server";
             }
             else{
-                String query="Select ModifiedDate,Subject,MainContent,FeatureImage from Posts";
+                String query="Select ModifiedDate,Subject,MainContent from Posts";
                 try {
                     PreparedStatement ps=connection.prepareStatement(query);
                     ResultSet rs=ps.executeQuery();
@@ -56,7 +56,6 @@ public class GetPost extends AppCompatActivity {
                         datanum.put("ModifiedDate", String.valueOf(rs.getDate("ModifiedDate")));
                         datanum.put("Subject",rs.getString("Subject"));
                         datanum.put("MainContent",rs.getString("MainContent"));
-                        datanum.put("FeatureImage",rs.getString("FeatureImage"));
                         list.add(datanum);
 
                     }
@@ -72,8 +71,8 @@ public class GetPost extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             //Toast.makeText(GetPost.this, s, Toast.LENGTH_SHORT).show();
-            String[] from={"ModifiedDate","Subject","MainContent","FeatureImage"};
-            int[] views={R.id.txtID,R.id.txtStatus,R.id.txtVin,R.id.txtmodel};
+            String[] from={"ModifiedDate","Subject","MainContent"};
+            int[] views={R.id.ModifiedDate,R.id.Subject,R.id.MainContent};
             final SimpleAdapter adapter=new SimpleAdapter(GetPost.this,list,R.layout.row_post,from,views);
             listPost.setAdapter(adapter);
             listPost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,8 +82,6 @@ public class GetPost extends AppCompatActivity {
                     String ModifiedDate=(String)obj.get("ModifiedDate");
                     String Subject=(String)obj.get("Subject");
                     String MainContent=(String)obj.get("MainContent");
-                    String FeatureImage=(String)obj.get("FeatureImage");
-                    //Toast.makeText(GetPost.this, ""+FeatureImage, Toast.LENGTH_SHORT).show();
                     AlertDialog.Builder builder = new AlertDialog.Builder(GetPost.this);
                             builder.setTitle(Subject);
                             builder.setMessage(MainContent);
