@@ -39,8 +39,8 @@
        android:id="@+id/datePicker">
    </DatePicker>
     <TimePicker
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_height="20dp"
         android:layout_weight=".33"
         android:layout_width="match_parent"
         android:textSize="12sp"
@@ -54,7 +54,7 @@
         android:layout_alignParentBottom="true"
         app:buttonColor="@color/btnSignUp"
         android:textColor="@android:color/white"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="100dp"
         />
 
 

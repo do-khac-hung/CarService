@@ -135,15 +135,15 @@ public class CheckEviction extends AppCompatActivity {
             if(s.equals("true")){
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(CheckEviction.this);
-                builder.setTitle("Check the eviction");
-                builder.setMessage("Your car is not in the summon list");
+                builder.setTitle(R.string.vehiclerecall);
+                builder.setMessage(R.string.NoMainRecall);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             }
             else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(CheckEviction.this);
-                builder.setTitle("Check the eviction");
-                builder.setMessage("Your car is in the summon list");
+                builder.setTitle(R.string.vehiclerecall);
+                builder.setMessage(R.string.OKMainReCall);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 

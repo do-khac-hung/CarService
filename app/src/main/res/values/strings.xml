@@ -52,5 +52,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="CarDetails" translatable="false">Car Details</string>
     <string name="ChooseDateTime" translatable="false">Choose date and time</string>
+    <string name="vehiclerecall" translatable="false">vehicle recall</string>
+    <string name="OKMainReCall" translatable="false">Your car in the vehicle recall list</string>
+    <string name="NoMainRecall" translatable="false">Your car is not on the recall list</string>
 
 </resources>
