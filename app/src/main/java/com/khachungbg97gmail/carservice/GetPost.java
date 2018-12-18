@@ -2,15 +2,22 @@ package com.khachungbg97gmail.carservice;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
+import com.khachungbg97gmail.carservice.Common.Common;
 import com.khachungbg97gmail.carservice.SQL.ConnectSQL;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,7 +53,7 @@ public class GetPost extends AppCompatActivity {
                 z="Error in connect with SQL server";
             }
             else{
-                String query="Select ModifiedDate,Subject,MainContent from Posts";
+                String query="Select ID,ModifiedDate,Subject,MainContent from Posts";
                 try {
                     PreparedStatement ps=connection.prepareStatement(query);
                     ResultSet rs=ps.executeQuery();
@@ -56,6 +63,7 @@ public class GetPost extends AppCompatActivity {
                         datanum.put("ModifiedDate", String.valueOf(rs.getDate("ModifiedDate")));
                         datanum.put("Subject",rs.getString("Subject"));
                         datanum.put("MainContent",rs.getString("MainContent"));
+                        datanum.put("ID",rs.getString("ID"));
                         list.add(datanum);
 
                     }
@@ -75,10 +83,12 @@ public class GetPost extends AppCompatActivity {
             int[] views={R.id.ModifiedDate,R.id.Subject,R.id.MainContent};
             final SimpleAdapter adapter=new SimpleAdapter(GetPost.this,list,R.layout.row_post,from,views);
             listPost.setAdapter(adapter);
+            Common.countNotify=list.size();
             listPost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     HashMap<String,Object>obj= (HashMap<String, Object>) adapter.getItem(position);
+                    String ID =(String)obj.get("ID");
                     String ModifiedDate=(String)obj.get("ModifiedDate");
                     String Subject=(String)obj.get("Subject");
                     String MainContent=(String)obj.get("MainContent");
@@ -90,6 +100,22 @@ public class GetPost extends AppCompatActivity {
                 }
             });
             super.onPostExecute(s);
+        }
+    }
+    private void SaveID(String ID){
+        String fileName="IDPost.txt";
+        String data=ID+"\n";
+        File file=new File(Environment.getExternalStorageDirectory().getAbsolutePath(),fileName);
+        try {
+            FileOutputStream fileOutputStream=new FileOutputStream(file);
+                fileOutputStream.write(data.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(this,"file not found",Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this,"Error Saving",Toast.LENGTH_SHORT).show();
         }
     }
 }

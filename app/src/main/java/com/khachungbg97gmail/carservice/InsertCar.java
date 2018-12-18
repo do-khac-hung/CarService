@@ -138,6 +138,7 @@ public class InsertCar extends AppCompatActivity {
                 if(data!=null){
                     String text=data.getStringExtra("TextBlock");
                     // Toast.makeText(this, ""+text, Toast.LENGTH_SHORT).show();
+                    stTypeCode.setChecked(false);
                     edtVim.setText(text);
 
                 }else{

@@ -17,12 +17,21 @@
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter Vehicle's Vin"/>
+        android:text="Nhập mã VIN hoặc quét bằng camera" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:weightSum="2"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scView">
     <LinearLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -31,7 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_weight="9"
             android:layout_height="match_parent"
-            android:id="@+id/edtVinCode"/>
+            android:id="@+id/edtVinCode"
+            app:met_maxCharacters="17"/>
         <Button android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="Scan"
@@ -42,10 +52,11 @@
         </LinearLayout>
     </ScrollView>
        <Button
+           android:layout_weight="1"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Process"
+           android:text="Xem thông tin xe"
            android:id="@+id/btnprocess"/>
 
-
+</LinearLayout>
 </LinearLayout>

@@ -48,11 +48,13 @@ import java.util.List;
 
 import io.paperdb.Paper;
 
+import static com.khachungbg97gmail.carservice.Common.Common.currentUser;
+
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
     DatabaseReference car;
-    TextView txtName,txtScheduleMessage;
+    TextView txtName,txtScheduleMessage,txtNotify;
     ImageView mAddress,mHotline,mVideo,mSchedule,mEPC,mAdd;
     String url="https://carservice-47a9f.firebaseio.com/Schedules.json";
     Query mReference;
@@ -75,10 +77,13 @@ public class Home extends AppCompatActivity
         database=FirebaseDatabase.getInstance();
         mReference=database.getReference().child("Schedules").orderByChild("idUser").equalTo(ChatUser.id);
         txtScheduleMessage=(TextView)findViewById(R.id.txtScheduleMessage);
+        txtNotify=(TextView)findViewById(R.id.number);
+        if(Common.countNotify!=0)
+        txtNotify.setText(""+Common.countNotify);
 //        if(Common.currentUser!=null) {
 //            findNearestDate(url);
 //        }
-        if(Common.currentUser!=null){
+        if(currentUser!=null){
             findNearest();
         }
 
@@ -86,7 +91,7 @@ public class Home extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Common.currentUser==null){
+                if(currentUser==null){
                 Snackbar.make(view, "Please sign in or sign up", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 }else{
@@ -111,7 +116,7 @@ public class Home extends AppCompatActivity
         MenuItem nav_manage=menuNav.findItem(R.id.nav_manage);
         MenuItem nav_send=menuNav.findItem(R.id.nav_send);
         MenuItem nav_check=menuNav.findItem(R.id.nav_check);
-        if(Common.currentUser==null){
+        if(currentUser==null){
             nav_info.setEnabled(false);
             nav_notify.setEnabled(false);
             nav_manage.setEnabled(false);
@@ -122,8 +127,8 @@ public class Home extends AppCompatActivity
         //set Name for user
         View headerView=navigationView.getHeaderView(0);
         txtName=(TextView)headerView.findViewById(R.id.txtName1);
-        if(Common.currentUser!=null) {
-            txtName.setText(Common.currentUser.getLastName());
+        if(currentUser!=null) {
+            txtName.setText(currentUser.getLastName());
         }
         mAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -287,6 +292,7 @@ public class Home extends AppCompatActivity
         }else if (id == R.id.nav_logout) {
             //delete email ,pass
             Paper.book().destroy();
+            currentUser=null;
             Intent SignOut= new Intent(Home.this,MainActivity.class);
             SignOut.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(SignOut);

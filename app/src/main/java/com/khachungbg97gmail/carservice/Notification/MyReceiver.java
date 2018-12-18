@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.widget.Toast;
 
 import com.khachungbg97gmail.carservice.Maintenance;
 import com.khachungbg97gmail.carservice.R;
@@ -25,7 +26,7 @@ public class MyReceiver extends BroadcastReceiver {
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(Maintenance.class);
         stackBuilder.addNextIntent(notificationIntent);
-
+        Toast.makeText(context, "Alarm Triggered", Toast.LENGTH_SHORT).show();
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         String Vin=intent.getStringExtra("Vin");
         String level=intent.getStringExtra("Level");

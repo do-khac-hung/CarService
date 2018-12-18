@@ -72,8 +72,8 @@ public class Maintenance extends AppCompatActivity {
                     String timeSchedule=time.getCurrentHour()+":"+time.getCurrentMinute();
                     //String vinCode= currentVin.getVinCode();
                     Schedule schedule=new Schedule(date,note,idUser,Vin,accessories,timeSchedule);
-                    table_schedule.child(date+"_"+idUser).setValue(schedule);
-                    Toast.makeText(Maintenance.this, "Successfully!!", Toast.LENGTH_SHORT).show();
+                    table_schedule.child(timeSchedule+"_"+date+"_"+idUser).setValue(schedule);
+                    //Toast.makeText(Maintenance.this, "Successfully!!", Toast.LENGTH_SHORT).show();
                     Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
                     notificationIntent.addCategory("android.intent.category.DEFAULT");
                     notificationIntent.putExtra("Vin",Vin);
@@ -87,6 +87,8 @@ public class Maintenance extends AppCompatActivity {
                     cal.add(Calendar.DAY_OF_MONTH,datePicker.getDayOfMonth()-cal.get(Calendar.DAY_OF_MONTH));
                     cal.add(Calendar.HOUR_OF_DAY,time.getCurrentHour()-cal.get(Calendar.HOUR_OF_DAY));
                     cal.add(Calendar.MINUTE,time.getCurrentMinute()-cal.get(Calendar.MINUTE));
+//                    cal.add(Calendar.HOUR_OF_DAY,time.getHour()-cal.get(Calendar.HOUR_OF_DAY));
+//                    cal.add(Calendar.MINUTE,time.getMinute()-cal.get(Calendar.MINUTE));
                     cal.add(Calendar.SECOND,0);
                     AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                     alarmManager.setExact(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(), pendingIntent);

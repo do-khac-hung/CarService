@@ -44,6 +44,7 @@
         android:layout_weight=".33"
         android:layout_width="match_parent"
         android:textSize="12sp"
+        android:timePickerMode="spinner"
         android:id="@+id/timePicker"></TimePicker>
 
     <info.hoang8f.widget.FButton
@@ -54,7 +55,7 @@
         android:layout_alignParentBottom="true"
         app:buttonColor="@color/btnSignUp"
         android:textColor="@android:color/white"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         />
 
 

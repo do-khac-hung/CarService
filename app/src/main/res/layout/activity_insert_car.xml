@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:background="@drawable/background"
     tools:context="com.khachungbg97gmail.carservice.InsertCar">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -34,7 +33,6 @@
             android:layout_height="wrap_content"
             android:text="@string/category"
             android:textSize="20dp"
-            android:textColor="@android:color/white"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/vin"
-            android:textColor="@android:color/white"
             android:textSize="20dp"/>
         <Switch
             android:layout_width="match_parent"
@@ -68,7 +65,7 @@
             android:id="@+id/switchType"
             android:checked="false"
             android:text="@string/fill"
-            android:textColor="@android:color/white"/>
+           />
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

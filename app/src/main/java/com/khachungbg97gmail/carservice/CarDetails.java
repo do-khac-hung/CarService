@@ -83,10 +83,11 @@ public class CarDetails extends AppCompatActivity {
         btnProcess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String vinCode=edtVinCode.getText().toString();
+                String vinCodeData=edtVinCode.getText().toString();
                 //validate
-                if(vinCode.length()==17) {
+                if(vinCodeData.length()==17) {
                     //xu ly
+                    String vinCode=vinCodeData.toUpperCase();
                     getData(vinCode);
                     //RestAPI(vinCode);
                 }else{
