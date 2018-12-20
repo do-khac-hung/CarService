@@ -1,6 +1,7 @@
 package com.khachungbg97gmail.carservice;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -29,13 +30,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.khachungbg97gmail.carservice.Common.Common;
 import com.khachungbg97gmail.carservice.Model.ChatUser;
 import com.khachungbg97gmail.carservice.Model.Schedule;
+import com.khachungbg97gmail.carservice.SQL.ConnectSQL;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,7 +63,7 @@ public class Home extends AppCompatActivity
     ImageView mAddress,mHotline,mVideo,mSchedule,mEPC,mAdd;
     String url="https://carservice-47a9f.firebaseio.com/Schedules.json";
     Query mReference;
-
+    ConnectSQL connect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +83,9 @@ public class Home extends AppCompatActivity
         mReference=database.getReference().child("Schedules").orderByChild("idUser").equalTo(ChatUser.id);
         txtScheduleMessage=(TextView)findViewById(R.id.txtScheduleMessage);
         txtNotify=(TextView)findViewById(R.id.number);
-        if(Common.countNotify!=0)
-        txtNotify.setText(""+Common.countNotify);
+        connect = new ConnectSQL();
+        CountNotices countNotices=new CountNotices();
+        countNotices.execute("");
 //        if(Common.currentUser!=null) {
 //            findNearestDate(url);
 //        }
@@ -286,8 +292,10 @@ public class Home extends AppCompatActivity
             startActivity(notify);
 
         } else if (id == R.id.nav_send) {
-            Intent mHotLine=new Intent(Home.this,HotLine.class);
-            startActivity(mHotLine);
+//            Intent mHotLine=new Intent(Home.this,HotLine.class);
+//            startActivity(mHotLine);
+              Intent mInsert=new Intent(Home.this,InsertCar.class);
+              startActivity(mInsert);
 
         }else if (id == R.id.nav_logout) {
             //delete email ,pass
@@ -351,5 +359,39 @@ public class Home extends AppCompatActivity
         });
         RequestQueue rQueue = Volley.newRequestQueue(Home.this);
         rQueue.add(request);
+    }
+    public class CountNotices extends AsyncTask<String,String,String>{
+        String z="";
+        List<String> listNotices=new ArrayList<String>();
+        @Override
+        protected String doInBackground(String... params) {
+            Connection connection = connect.CONN();
+            if(connection==null){
+                z="Error in connect with SQL server";
+            }
+            else{
+                String query="Select ID from Posts";
+                try {
+                    PreparedStatement ps=connection.prepareStatement(query);
+                    ResultSet rs=ps.executeQuery();
+                    while(rs.next()){
+                        listNotices.add(rs.getString("ID"));
+
+                    }
+                    z = "Success";
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    z = "Error retrieving data from table";
+                }
+            }
+            return z;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if(listNotices.size()!=0)
+                txtNotify.setText(""+listNotices.size());
+        }
     }
 }

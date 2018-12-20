@@ -26,6 +26,9 @@ import com.khachungbg97gmail.carservice.Model.NumberRecognition;
 import com.khachungbg97gmail.carservice.Model.Vin;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,12 +56,13 @@ public class InsertCar extends AppCompatActivity {
         table_vin=database.getReference("Vins");
         auth = FirebaseAuth.getInstance();
         list = new ArrayList<>();
-        list.add("FIESTA");
-        list.add("NEW FOCUS");
-        list.add("TRANSIT");
-        list.add("NEW RANGER");
-        list.add("ECOSPORT");
-        list.add("NEW EVEREST");
+//        list.add("FIESTA");
+//        list.add("NEW FOCUS");
+//        list.add("TRANSIT");
+//        list.add("NEW RANGER");
+//        list.add("ECOSPORT");
+//        list.add("NEW EVEREST");
+        ReadData();
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,list);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnCategory.setAdapter(adapter);
@@ -108,7 +112,7 @@ public class InsertCar extends AppCompatActivity {
                      public void onDataChange(DataSnapshot dataSnapshot) {
                          if(dataSnapshot.child(vinCode).exists()){
                              mDialog.dismiss();
-                             Toast.makeText(InsertCar.this, "Vin code is exists", Toast.LENGTH_SHORT).show();
+                             Toast.makeText(InsertCar.this, "Mã VIN đã tồn tại", Toast.LENGTH_SHORT).show();
                          }
                          else {
                              mDialog.dismiss();
@@ -150,6 +154,19 @@ public class InsertCar extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+    public void ReadData(){
+        try {
+            FileInputStream in = this.openFileInput("Category.txt");
 
+            BufferedReader br= new BufferedReader(new InputStreamReader(in));
+            String line = null;
+            while((line= br.readLine())!= null)  {
+                list.add(line);
+            }
+
+        } catch (Exception e) {
+            Toast.makeText(this,"Error:"+ e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+    }
 
     }

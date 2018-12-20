@@ -106,7 +106,7 @@
             android:layout_marginRight="5dp"
             android:id="@+id/listbd"
             android:layout_width="match_parent"
-            android:layout_height="230dp">
+            android:layout_height="300dp">
         </ListView>
         <info.hoang8f.widget.FButton
             android:layout_width="match_parent"

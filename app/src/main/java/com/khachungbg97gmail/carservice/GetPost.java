@@ -11,7 +11,6 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.khachungbg97gmail.carservice.Common.Common;
 import com.khachungbg97gmail.carservice.SQL.ConnectSQL;
 
 import java.io.File;
@@ -83,7 +82,6 @@ public class GetPost extends AppCompatActivity {
             int[] views={R.id.ModifiedDate,R.id.Subject,R.id.MainContent};
             final SimpleAdapter adapter=new SimpleAdapter(GetPost.this,list,R.layout.row_post,from,views);
             listPost.setAdapter(adapter);
-            Common.countNotify=list.size();
             listPost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

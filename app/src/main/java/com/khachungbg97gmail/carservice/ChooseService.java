@@ -24,6 +24,9 @@ import com.khachungbg97gmail.carservice.Model.ChatUser;
 import com.khachungbg97gmail.carservice.Model.Vin;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,23 +50,24 @@ public class ChooseService extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_service);
         level1=new ArrayList<>();
-        level1.add("Nhớt động cơ");
-        level1.add("Lọc nhớt");
+//        level1.add("Nhớt động cơ");
+//        level1.add("Lọc nhớt");
         level2=new ArrayList<>();
-        level2.add("Nhớt động cơ");
+//        level2.add("Nhớt động cơ");
         level3=new ArrayList<>();
-        level3.add("Nhớt động cơ");
-        level3.add("Lọc nhớt");
-        level3.add("Lọc xăng");
-        level3.add("Lọc gió");
-        level3.add("Hộp số");
-        level3.add("Dầu trơ lực lái");
-        level3.add("Dầu thắng");
-        level3.add("Nước làm mát");
-        level3.add("Bugi");
-        level3.add("Hệ thống thắng");
-        level3.add("Bạc đạn bánh");
-        level3.add("Hệ thống lạnh");
+//        level3.add("Nhớt động cơ");
+//        level3.add("Lọc nhớt");
+//        level3.add("Lọc xăng");
+//        level3.add("Lọc gió");
+//        level3.add("Hộp số");
+//        level3.add("Dầu trơ lực lái");
+//        level3.add("Dầu thắng");
+//        level3.add("Nước làm mát");
+//        level3.add("Bugi");
+//        level3.add("Hệ thống thắng");
+//        level3.add("Bạc đạn bánh");
+//        level3.add("Hệ thống lạnh");
+        ReadData();
         ImAdd=(ImageView) findViewById(R.id.plus);
         ImMinus=(ImageView) findViewById(R.id.minus);
         txtLevel=(TextView)findViewById(R.id.txtlevel);
@@ -115,20 +119,7 @@ public class ChooseService extends AppCompatActivity {
         btnNext=(Button)findViewById(R.id.btnDatLich);
         updateListView(progressValue);
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,listVin);
-//        adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-//        spinnerCar.setAdapter(adapter);
-//        spinnerCar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                edtCar.setText(listVin.get(position));
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                edtCar.setText("");
-//            }
-//        });
+
 
         ImAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,6 +214,30 @@ public class ChooseService extends AppCompatActivity {
               ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, level3);
               listView.setAdapter(adapter);
           }
+    }
+    public void ReadData(){
+        try {
+            FileInputStream in = this.openFileInput("list1.txt");
+            BufferedReader br= new BufferedReader(new InputStreamReader(in));
+            String line = null;
+            while((line= br.readLine())!= null)  {
+                level1.add(line);
+            }
+            FileInputStream in2 = this.openFileInput("list2.txt");
+            BufferedReader br2= new BufferedReader(new InputStreamReader(in2));
+            String line2 = null;
+            while((line2= br2.readLine())!= null)  {
+                level2.add(line2);
+            }
+            FileInputStream in3 = this.openFileInput("list3.txt");
+            BufferedReader br3= new BufferedReader(new InputStreamReader(in3));
+            String line3 = null;
+            while((line3= br3.readLine())!= null)  {
+                level3.add(line3);
+            }
+        } catch (Exception e) {
+            Toast.makeText(this,"Error:"+ e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
