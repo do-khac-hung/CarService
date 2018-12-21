@@ -292,10 +292,9 @@ public class Home extends AppCompatActivity
             startActivity(notify);
 
         } else if (id == R.id.nav_send) {
-//            Intent mHotLine=new Intent(Home.this,HotLine.class);
-//            startActivity(mHotLine);
-              Intent mInsert=new Intent(Home.this,InsertCar.class);
-              startActivity(mInsert);
+            Intent mHotLine=new Intent(Home.this,HotLine.class);
+            startActivity(mHotLine);
+
 
         }else if (id == R.id.nav_logout) {
             //delete email ,pass

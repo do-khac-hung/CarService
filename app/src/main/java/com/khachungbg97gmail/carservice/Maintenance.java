@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.khachungbg97gmail.carservice.Model.ChatUser;
 import com.khachungbg97gmail.carservice.Model.Schedule;
+import com.khachungbg97gmail.carservice.Notification.MyReceiver;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -73,25 +75,26 @@ public class Maintenance extends AppCompatActivity {
                     //String vinCode= currentVin.getVinCode();
                     Schedule schedule=new Schedule(date,note,idUser,Vin,accessories,timeSchedule);
                     table_schedule.child(timeSchedule+"_"+date+"_"+idUser).setValue(schedule);
-                    //Toast.makeText(Maintenance.this, "Successfully!!", Toast.LENGTH_SHORT).show();
-                    Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-                    notificationIntent.addCategory("android.intent.category.DEFAULT");
+                    Intent notificationIntent = new Intent(Maintenance.this, MyReceiver.class);
                     notificationIntent.putExtra("Vin",Vin);
                     notificationIntent.putExtra("Level",accessories);
 
                     PendingIntent pendingIntent = PendingIntent.getBroadcast
                             (Maintenance.this,100 , notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                     Calendar cal = Calendar.getInstance();
-                    cal.add(Calendar.YEAR,datePicker.getYear()-cal.get(Calendar.YEAR));
-                    cal.add(Calendar.MONTH,datePicker.getMonth()-cal.get(Calendar.MONTH));
-                    cal.add(Calendar.DAY_OF_MONTH,datePicker.getDayOfMonth()-cal.get(Calendar.DAY_OF_MONTH));
-                    cal.add(Calendar.HOUR_OF_DAY,time.getCurrentHour()-cal.get(Calendar.HOUR_OF_DAY));
-                    cal.add(Calendar.MINUTE,time.getCurrentMinute()-cal.get(Calendar.MINUTE));
-//                    cal.add(Calendar.HOUR_OF_DAY,time.getHour()-cal.get(Calendar.HOUR_OF_DAY));
-//                    cal.add(Calendar.MINUTE,time.getMinute()-cal.get(Calendar.MINUTE));
+                    cal.add(Calendar.YEAR,datePicker.getYear()-current.get(Calendar.YEAR));
+                    cal.add(Calendar.MONTH,datePicker.getMonth()-current.get(Calendar.MONTH));
+                    cal.add(Calendar.DAY_OF_MONTH,datePicker.getDayOfMonth()-current.get(Calendar.DAY_OF_MONTH));
+                    cal.add(Calendar.HOUR_OF_DAY,time.getCurrentHour()-current.get(Calendar.HOUR_OF_DAY));
+                    cal.add(Calendar.MINUTE,time.getCurrentMinute()-current.get(Calendar.MINUTE));
                     cal.add(Calendar.SECOND,0);
+                    Log.d("ACD",""+
+                            (time.getCurrentHour())+"_"+
+                            (time.getCurrentMinute())+"_"+
+                            current.get(Calendar.MINUTE)
+                    );
                     AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-                    alarmManager.setExact(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(), pendingIntent);
+                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(), pendingIntent);
                     Intent home=new Intent(Maintenance.this,Home.class);
                     startActivity(home);
                 }
