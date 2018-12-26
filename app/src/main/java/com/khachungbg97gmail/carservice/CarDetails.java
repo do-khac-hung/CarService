@@ -88,8 +88,8 @@ public class CarDetails extends AppCompatActivity {
                 if(vinCodeData.length()==17) {
                     //xu ly
                     String vinCode=vinCodeData.toUpperCase();
-                    getData(vinCode);
-                    //RestAPI(vinCode);
+                    //getData(vinCode);
+                    RestAPI(vinCode);
                 }else{
                     Toast.makeText(CarDetails.this, "Nhập lại hoặc scan lại vin code", Toast.LENGTH_SHORT).show();
                 }
@@ -105,7 +105,7 @@ public class CarDetails extends AppCompatActivity {
         loadListVin(ChatUser.id);
         recyclerView.setAdapter(adapter);
 
-        //init Firebase
+
 
 
     }

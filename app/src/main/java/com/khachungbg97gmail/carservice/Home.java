@@ -54,6 +54,7 @@ import java.util.List;
 import io.paperdb.Paper;
 
 import static com.khachungbg97gmail.carservice.Common.Common.currentUser;
+import static com.khachungbg97gmail.carservice.R.id.nav_notify;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -118,13 +119,13 @@ public class Home extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         Menu menuNav=navigationView.getMenu();
         MenuItem nav_info=menuNav.findItem(R.id.nav_info);
-        MenuItem nav_notify=menuNav.findItem(R.id.nav_notify);
+        MenuItem nav_details=menuNav.findItem(R.id.nav_details);
         MenuItem nav_manage=menuNav.findItem(R.id.nav_manage);
         MenuItem nav_send=menuNav.findItem(R.id.nav_send);
         MenuItem nav_check=menuNav.findItem(R.id.nav_check);
         if(currentUser==null){
             nav_info.setEnabled(false);
-            nav_notify.setEnabled(false);
+            nav_details.setEnabled(false);
             nav_manage.setEnabled(false);
             nav_send.setEnabled(false);
             nav_check.setEnabled(false);
@@ -287,7 +288,7 @@ public class Home extends AppCompatActivity
             startActivity(mDetails);
 
         }
-        else if (id == R.id.nav_notify) {
+        else if (id == nav_notify) {
             Intent notify=new Intent(Home.this,GetPost.class);
             startActivity(notify);
 

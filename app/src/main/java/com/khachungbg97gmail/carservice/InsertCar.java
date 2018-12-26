@@ -112,7 +112,7 @@ public class InsertCar extends AppCompatActivity {
                      public void onDataChange(DataSnapshot dataSnapshot) {
                          if(dataSnapshot.child(vinCode).exists()){
                              mDialog.dismiss();
-                             Toast.makeText(InsertCar.this, "Mã VIN đã tồn tại", Toast.LENGTH_SHORT).show();
+                             //Toast.makeText(InsertCar.this, "Mã VIN đã tồn tại", Toast.LENGTH_SHORT).show();
                          }
                          else {
                              mDialog.dismiss();
